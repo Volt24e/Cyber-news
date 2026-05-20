@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Cybersecurity intelligence platform tracking global threats, breaches, and vulnerabilities in real-time">
-    <title>SECURE | Cyber Threat Intelligence</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>VOID | Cyber Intelligence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * {
@@ -15,78 +14,97 @@
         }
 
         body {
-            background-color: #000000;
-            font-family: 'Inter', sans-serif;
+            background: #000000;
+            font-family: 'Space Grotesk', monospace;
             color: #ffffff;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
-        /* Minimalist Container */
+        /* Animated Grid Background */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
         .container {
-            max-width: 1400px;
+            max-width: 1300px;
             margin: 0 auto;
             padding: 0 40px;
+            position: relative;
+            z-index: 1;
         }
 
         /* Header */
-        .site-header {
-            padding: 32px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+        .header {
+            padding: 40px 0 20px;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.15);
         }
 
-        .header-inner {
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
             flex-wrap: wrap;
-            gap: 24px;
+            gap: 30px;
         }
 
         .logo h1 {
-            font-size: 28px;
-            font-weight: 500;
-            letter-spacing: -0.5px;
+            font-size: 32px;
+            font-weight: 600;
+            letter-spacing: -1px;
         }
 
         .logo h1 span {
-            font-weight: 300;
-            color: #888;
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
         }
 
         .logo p {
             font-size: 12px;
             color: #555;
-            margin-top: 6px;
-            letter-spacing: 0.3px;
+            letter-spacing: 2px;
+            margin-top: 5px;
         }
 
-        .header-stats {
+        .stats {
+            display: flex;
+            gap: 25px;
+        }
+
+        .stat {
             text-align: right;
         }
 
         .stat-number {
-            font-size: 34px;
-            font-weight: 500;
-            letter-spacing: -1px;
+            font-size: 28px;
+            font-weight: 600;
+            color: #00ffff;
         }
 
         .stat-label {
-            font-size: 11px;
+            font-size: 10px;
             color: #555;
-            text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         /* Navigation */
         .nav {
             padding: 20px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-            margin-bottom: 60px;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
         }
 
         .nav-links {
             display: flex;
-            gap: 32px;
+            gap: 35px;
             flex-wrap: wrap;
         }
 
@@ -94,184 +112,190 @@
             color: #888;
             text-decoration: none;
             font-size: 13px;
-            font-weight: 400;
-            letter-spacing: 0.3px;
+            letter-spacing: 1px;
             transition: color 0.2s;
         }
 
         .nav-links a:hover {
-            color: #fff;
+            color: #00ffff;
         }
 
-        /* Hero Section - Clean & Minimal */
+        /* Hero */
         .hero {
-            margin-bottom: 80px;
+            padding: 80px 0;
+            text-align: center;
         }
 
-        .hero-tag {
-            font-size: 12px;
-            color: #555;
+        .hero-badge {
+            display: inline-block;
+            background: rgba(0, 255, 255, 0.1);
+            color: #00ffff;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 11px;
             letter-spacing: 2px;
-            margin-bottom: 24px;
-            text-transform: uppercase;
+            margin-bottom: 30px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
         }
 
-        .hero-title {
-            font-size: 64px;
-            font-weight: 500;
-            line-height: 1.1;
+        .hero h1 {
+            font-size: 72px;
+            font-weight: 700;
             letter-spacing: -2px;
-            margin-bottom: 24px;
-            max-width: 800px;
+            line-height: 1.1;
+            margin-bottom: 25px;
         }
 
-        .hero-description {
-            font-size: 16px;
-            color: #888;
-            max-width: 500px;
-            line-height: 1.5;
-            margin-bottom: 40px;
+        .hero h1 span {
+            color: #00ffff;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto 40px;
         }
 
         .hero-stats {
             display: flex;
-            gap: 48px;
+            justify-content: center;
+            gap: 50px;
+        }
+
+        .hero-stat {
+            text-align: center;
         }
 
         .hero-stat .value {
-            font-size: 28px;
-            font-weight: 500;
+            font-size: 36px;
+            font-weight: 700;
+            color: #00ffff;
         }
 
         .hero-stat .label {
             font-size: 11px;
             color: #555;
-            margin-top: 4px;
+            letter-spacing: 1px;
+            margin-top: 5px;
         }
 
-        /* Grid Layout */
+        /* Section Title */
         .section-title {
             font-size: 11px;
-            color: #555;
-            letter-spacing: 2px;
+            color: #00ffff;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
             text-transform: uppercase;
-            margin-bottom: 32px;
         }
 
+        /* News Grid */
         .news-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-bottom: 80px;
+            gap: 30px;
+            margin-bottom: 60px;
         }
 
         .news-card {
+            background: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 16px;
+            padding: 25px;
+            transition: all 0.3s;
             cursor: pointer;
-            transition: opacity 0.2s;
         }
 
         .news-card:hover {
-            opacity: 0.7;
+            border-color: #00ffff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.05);
         }
 
         .card-category {
-            font-size: 11px;
-            color: #555;
-            margin-bottom: 16px;
+            font-size: 10px;
+            color: #00ffff;
             letter-spacing: 1px;
+            margin-bottom: 12px;
         }
 
         .card-title {
-            font-size: 20px;
-            font-weight: 500;
-            line-height: 1.3;
-            margin-bottom: 16px;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            line-height: 1.4;
         }
 
         .card-excerpt {
-            font-size: 14px;
-            color: #888;
+            font-size: 13px;
+            color: #666;
             line-height: 1.5;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .card-meta {
-            font-size: 12px;
-            color: #444;
             display: flex;
-            gap: 16px;
-        }
-
-        /* Feature Row */
-        .feature-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 80px;
-            padding: 60px 0;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .feature-number {
+            justify-content: space-between;
             font-size: 11px;
-            color: #555;
-            margin-bottom: 24px;
+            color: #444;
+            padding-top: 15px;
+            border-top: 1px solid #1a1a1a;
         }
 
-        .feature-title {
-            font-size: 32px;
-            font-weight: 500;
-            line-height: 1.2;
-            margin-bottom: 24px;
+        /* Feature Section */
+        .feature-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            padding: 60px 0;
+            border-top: 1px solid #1a1a1a;
+            border-bottom: 1px solid #1a1a1a;
+            margin: 40px 0;
         }
 
-        .feature-text {
-            color: #888;
-            line-height: 1.6;
-        }
-
-        /* Full Width Banner */
-        .banner {
-            margin: 80px 0;
+        .feature {
             text-align: center;
         }
 
-        .banner-quote {
-            font-size: 48px;
-            font-weight: 500;
-            letter-spacing: -1px;
-            margin-bottom: 24px;
+        .feature-icon {
+            font-size: 40px;
+            color: #00ffff;
+            margin-bottom: 20px;
         }
 
-        .banner-sub {
+        .feature h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            font-size: 13px;
             color: #555;
-            font-size: 14px;
         }
 
         /* Footer */
         .footer {
-            margin-top: 80px;
             padding: 60px 0 40px;
-            border-top: 1px solid rgba(255,255,255,0.08);
+            border-top: 1px solid #1a1a1a;
+            margin-top: 60px;
         }
 
         .footer-grid {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 60px;
+            gap: 50px;
+            margin-bottom: 50px;
         }
 
         .footer-col h4 {
             font-size: 12px;
-            font-weight: 500;
-            margin-bottom: 20px;
+            color: #00ffff;
             letter-spacing: 1px;
+            margin-bottom: 20px;
         }
 
         .footer-col p {
-            font-size: 13px;
+            font-size: 12px;
             color: #555;
             line-height: 1.6;
         }
@@ -287,20 +311,76 @@
         .footer-col a {
             color: #555;
             text-decoration: none;
-            font-size: 13px;
+            font-size: 12px;
             transition: color 0.2s;
         }
 
         .footer-col a:hover {
-            color: #fff;
+            color: #00ffff;
         }
 
         .footer-bottom {
             text-align: center;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            font-size: 12px;
+            padding-top: 30px;
+            border-top: 1px solid #1a1a1a;
+            font-size: 11px;
             color: #444;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.98);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            text-align: center;
+            max-width: 450px;
+            padding: 50px;
+            background: #0a0a0a;
+            border: 1px solid #00ffff;
+            border-radius: 24px;
+        }
+
+        .modal-icon {
+            font-size: 70px;
+            color: #00ffff;
+            margin-bottom: 20px;
+        }
+
+        .modal h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .modal p {
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .modal button {
+            background: transparent;
+            border: 1px solid #00ffff;
+            color: #00ffff;
+            padding: 12px 30px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .modal button:hover {
+            background: #00ffff;
+            color: #000;
         }
 
         /* Responsive */
@@ -308,215 +388,200 @@
             .container {
                 padding: 0 20px;
             }
-            .hero-title {
-                font-size: 40px;
+            .hero h1 {
+                font-size: 42px;
             }
             .news-grid {
                 grid-template-columns: 1fr;
-                gap: 40px;
             }
-            .feature-row {
+            .feature-section {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 30px;
             }
             .footer-grid {
                 grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            .banner-quote {
-                font-size: 32px;
+                gap: 30px;
             }
         }
     </style>
 </head>
 <body>
+    <div class="grid-bg"></div>
 
     <div class="container">
-        <div class="site-header">
-            <div class="header-inner">
+        <div class="header">
+            <div class="header-content">
                 <div class="logo">
-                    <h1>SECURE<span>/INTEL</span></h1>
-                    <p>cyber threat intelligence</p>
+                    <h1>VOID<span>//SEC</span></h1>
+                    <p>CYBER INTELLIGENCE DIVISION</p>
                 </div>
-                <div class="header-stats">
-                    <div class="stat-number" id="incidentCount">0</div>
-                    <div class="stat-label">active threats</div>
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-number" id="threatCount">0</div>
+                        <div class="stat-label">ACTIVE THREATS</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number" id="updateTime">--:--</div>
+                        <div class="stat-label">LAST SCAN</div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="nav">
             <div class="nav-links">
-                <a href="#">INTELLIGENCE</a>
-                <a href="#">BREACHES</a>
-                <a href="#">VULNERABILITIES</a>
-                <a href="#">ANALYSIS</a>
-                <a href="#">REPORTS</a>
+                <a onclick="showWIP('Threat Intelligence')">INTEL</a>
+                <a onclick="showWIP('Breach Database')">BREACHES</a>
+                <a onclick="showWIP('Vulnerability Feed')">VULNS</a>
+                <a onclick="showWIP('APT Tracking')">APT</a>
+                <a onclick="showWIP('Dark Web')">DARK WEB</a>
             </div>
         </div>
 
         <div class="hero">
-            <div class="hero-tag">REAL-TIME THREAT MONITORING</div>
-            <h1 class="hero-title">Global cyber<br>intelligence feed</h1>
-            <p class="hero-description">Tracking security incidents, data breaches, and emerging vulnerabilities across the threat landscape.</p>
+            <div class="hero-badge">LIVE THREAT MONITORING</div>
+            <h1>Cyber threat<br>intelligence <span>feed</span></h1>
+            <p>Real-time tracking of security incidents, data breaches, and emerging vulnerabilities</p>
             <div class="hero-stats">
                 <div class="hero-stat">
                     <div class="value" id="liveCount">0</div>
-                    <div class="label">incidents today</div>
+                    <div class="label">INCIDENTS TODAY</div>
                 </div>
                 <div class="hero-stat">
-                    <div class="value" id="updateTime">--:--</div>
-                    <div class="label">last update</div>
+                    <div class="value">24/7</div>
+                    <div class="label">CONTINUOUS SCAN</div>
                 </div>
             </div>
         </div>
 
-        <div class="section-title">LATEST INTELLIGENCE</div>
+        <div class="section-title">// LATEST INTELLIGENCE</div>
         <div id="newsGrid" class="news-grid">
-            <div style="text-align: center; grid-column: 1/-1; padding: 60px; color: #555;">Loading intelligence feed...</div>
+            <div style="text-align: center; grid-column: 1/-1; padding: 60px; color: #444;">Loading threat feed...</div>
         </div>
 
-        <div class="feature-row">
-            <div>
-                <div class="feature-number">001</div>
-                <div class="feature-title">Continuous<br>monitoring</div>
+        <div class="feature-section">
+            <div class="feature">
+                <div class="feature-icon"><i class="fas fa-eye"></i></div>
+                <h3>Continuous Monitoring</h3>
+                <p>24/7 threat detection from global security sources</p>
             </div>
-            <div>
-                <div class="feature-text">Real-time aggregation from global security sources. Every incident is verified and categorized by severity level for immediate awareness.</div>
+            <div class="feature">
+                <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Severity Classification</h3>
+                <p>Critical, High, Medium, Low threat levels</p>
             </div>
-        </div>
-
-        <div class="banner">
-            <div class="banner-quote">Threat intelligence<br>for security professionals</div>
-            <div class="banner-sub">Powered by open source intelligence · Updated continuously</div>
-        </div>
-
-        <div class="section-title">THREAT LANDSCAPE</div>
-        <div id="secondaryGrid" class="news-grid">
-            <!-- Secondary news will load here -->
+            <div class="feature">
+                <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3>OSINT Powered</h3>
+                <p>Open source intelligence from trusted feeds</p>
+            </div>
         </div>
 
         <div class="footer">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <h4>SECURE/INTEL</h4>
+                    <h4>VOID/SEC</h4>
                     <p>Independent cyber threat intelligence platform providing real-time security incident tracking and analysis.</p>
                 </div>
                 <div class="footer-col">
-                    <h4>INTELLIGENCE</h4>
+                    <h4>INTEL</h4>
                     <ul>
-                        <li><a href="#">Daily Briefing</a></li>
-                        <li><a href="#">Threat Reports</a></li>
-                        <li><a href="#">Vulnerability Database</a></li>
-                        <li><a href="#">APT Tracking</a></li>
+                        <li><a onclick="showWIP('Daily Briefing')">Daily Briefing</a></li>
+                        <li><a onclick="showWIP('Threat Reports')">Threat Reports</a></li>
+                        <li><a onclick="showWIP('Zero-Day Tracker')">Zero-Day Tracker</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>RESOURCES</h4>
                     <ul>
-                        <li><a href="#">API Access</a></li>
-                        <li><a href="#">Research</a></li>
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a onclick="showWIP('API Access')">API Access</a></li>
+                        <li><a onclick="showWIP('Documentation')">Documentation</a></li>
+                        <li><a onclick="showWIP('Contact')">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>LEGAL</h4>
                     <ul>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Disclaimer</a></li>
-                        <li><a href="#">Report a Threat</a></li>
+                        <li><a onclick="showWIP('Terms')">Terms</a></li>
+                        <li><a onclick="showWIP('Privacy')">Privacy</a></li>
+                        <li><a onclick="showWIP('Disclaimer')">Disclaimer</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2026 Secure/Intel. OSINT-based threat intelligence platform. Data sourced from public security feeds.</p>
+                <p>© 2026 VOID/SEC — Open source threat intelligence</p>
             </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="wipModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-icon"><i class="fas fa-terminal"></i></div>
+            <h2 id="modalTitle">Access Denied</h2>
+            <p id="modalMessage">This sector is under development. Our operators are writing code.</p>
+            <button onclick="closeModal()">ACKNOWLEDGE</button>
         </div>
     </div>
 
     <script>
         let articles = [];
+        let updateCount = 0;
 
-        async function fetchThreatIntel() {
-            const sources = [
-                { name: 'The Hacker News', url: 'https://api.rss2json.com/v1/api.json?rss_url=https://feeds.feedburner.com/TheHackersNews' },
-                { name: 'Bleeping Computer', url: 'https://api.rss2json.com/v1/api.json?rss_url=https://www.bleepingcomputer.com/feed/' }
+        const threatData = [
+            { title: 'Critical Ransomware Attack Hits Healthcare Provider', excerpt: 'Major hospital network encrypted, patient data at risk. Attackers demand $5M.', source: 'ThreatIntel', severity: 'critical', date: '2026-05-20' },
+            { title: 'Data Breach Exposes 10M User Records', excerpt: 'Popular social platform compromised. Email addresses and passwords leaked.', source: 'BreachWatch', severity: 'high', date: '2026-05-20' },
+            { title: 'Zero-Day Vulnerability in Chrome Browser', excerpt: 'Remote code execution vulnerability actively exploited in the wild.', source: 'VulnDB', severity: 'critical', date: '2026-05-19' },
+            { title: 'DDoS Attack Targets Financial Sector', excerpt: 'Coordinated attack causes service disruptions at multiple banks.', source: 'NetSec', severity: 'medium', date: '2026-05-19' },
+            { title: 'New Banking Trojan Discovered', excerpt: 'Android malware targets 200+ financial applications.', source: 'MalwareLab', severity: 'high', date: '2026-05-18' },
+            { title: 'SCADA Vulnerability in Power Grid', excerpt: 'Critical infrastructure at risk. Patch available.', source: 'ICS-CERT', severity: 'critical', date: '2026-05-18' }
+        ];
+
+        function showWIP(feature) {
+            const messages = [
+                "Access restricted. This sector is classified.",
+                "Operators are writing code. Return later.",
+                "404: Feature not found in this dimension.",
+                "Our hackers are on a coffee break.",
+                "This area is protected by 256-bit excuses.",
+                "Downloading more RAM. Please wait."
             ];
-            
-            let all = [];
-            for (let src of sources) {
-                try {
-                    let res = await fetch(src.url);
-                    let data = await res.json();
-                    if (data.items) {
-                        data.items.forEach(item => {
-                            all.push({
-                                title: item.title,
-                                excerpt: (item.description || '').replace(/<[^>]*>/g, '').substring(0, 140),
-                                date: new Date(item.pubDate).toLocaleDateString(),
-                                source: src.name,
-                                link: item.link
-                            });
-                        });
-                    }
-                } catch(e) {}
-            }
-            
-            let unique = [];
-            let seen = new Set();
-            for (let a of all) {
-                if (!seen.has(a.title)) {
-                    seen.add(a.title);
-                    unique.push(a);
-                }
-            }
-            
-            articles = unique.slice(0, 18);
-            document.getElementById('incidentCount').innerText = articles.length;
-            document.getElementById('liveCount').innerText = Math.min(articles.length, 12);
+            document.getElementById('modalTitle').innerText = feature + ' — LOCKED';
+            document.getElementById('modalMessage').innerHTML = messages[Math.floor(Math.random() * messages.length)] + '<br><span style="display:block; margin-top:10px; font-size:11px;">🚧 Under construction 🚧</span>';
+            document.getElementById('wipModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('wipModal').style.display = 'none';
+        }
+
+        function loadThreats() {
+            articles = threatData;
+            document.getElementById('threatCount').innerText = articles.length;
+            document.getElementById('liveCount').innerText = articles.length;
             document.getElementById('updateTime').innerText = new Date().toLocaleTimeString();
-            
             render();
         }
 
         function render() {
-            const mainGrid = document.getElementById('newsGrid');
-            const secondaryGrid = document.getElementById('secondaryGrid');
-            
-            const mainArticles = articles.slice(0, 6);
-            const secondaryArticles = articles.slice(6, 12);
-            
-            mainGrid.innerHTML = mainArticles.map(a => `
-                <div class="news-card" onclick="window.open('${a.link}', '_blank')">
-                    <div class="card-category">${a.source}</div>
-                    <div class="card-title">${a.title.substring(0, 80)}${a.title.length > 80 ? '...' : ''}</div>
-                    <div class="card-excerpt">${a.excerpt}...</div>
+            const grid = document.getElementById('newsGrid');
+            grid.innerHTML = articles.map(a => `
+                <div class="news-card" onclick="showWIP('${a.title}')">
+                    <div class="card-category">${a.source.toUpperCase()} / ${a.severity.toUpperCase()}</div>
+                    <div class="card-title">${a.title}</div>
+                    <div class="card-excerpt">${a.excerpt}</div>
                     <div class="card-meta">
-                        <span>${a.date}</span>
+                        <span>📅 ${a.date}</span>
                         <span>READ →</span>
                     </div>
                 </div>
             `).join('');
-            
-            if (secondaryArticles.length) {
-                secondaryGrid.innerHTML = secondaryArticles.map(a => `
-                    <div class="news-card" onclick="window.open('${a.link}', '_blank')">
-                        <div class="card-category">${a.source}</div>
-                        <div class="card-title">${a.title.substring(0, 70)}${a.title.length > 70 ? '...' : ''}</div>
-                        <div class="card-excerpt">${a.excerpt}...</div>
-                        <div class="card-meta">
-                            <span>${a.date}</span>
-                            <span>READ →</span>
-                        </div>
-                    </div>
-                `).join('');
-            }
         }
 
-        fetchThreatIntel();
-        setInterval(fetchThreatIntel, 300000);
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+        loadThreats();
+        setInterval(() => { updateCount++; document.getElementById('updateTime').innerText = new Date().toLocaleTimeString(); }, 60000);
     </script>
 </body>
 </html>
