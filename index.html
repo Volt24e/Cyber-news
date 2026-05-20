@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cybersecurity intelligence platform tracking global threats, breaches, and vulnerabilities in real-time">
     <title>SECURE | Cyber Threat Intelligence</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * {
@@ -20,12 +21,14 @@
             line-height: 1.4;
         }
 
+        /* Minimalist Container */
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 40px;
         }
 
+        /* Header */
         .site-header {
             padding: 32px 0;
             border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -54,6 +57,7 @@
             font-size: 12px;
             color: #555;
             margin-top: 6px;
+            letter-spacing: 0.3px;
         }
 
         .header-stats {
@@ -63,14 +67,17 @@
         .stat-number {
             font-size: 34px;
             font-weight: 500;
+            letter-spacing: -1px;
         }
 
         .stat-label {
             font-size: 11px;
             color: #555;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
+        /* Navigation */
         .nav {
             padding: 20px 0;
             border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -87,7 +94,8 @@
             color: #888;
             text-decoration: none;
             font-size: 13px;
-            cursor: pointer;
+            font-weight: 400;
+            letter-spacing: 0.3px;
             transition: color 0.2s;
         }
 
@@ -95,6 +103,7 @@
             color: #fff;
         }
 
+        /* Hero Section - Clean & Minimal */
         .hero {
             margin-bottom: 80px;
         }
@@ -104,6 +113,7 @@
             color: #555;
             letter-spacing: 2px;
             margin-bottom: 24px;
+            text-transform: uppercase;
         }
 
         .hero-title {
@@ -139,6 +149,7 @@
             margin-top: 4px;
         }
 
+        /* Grid Layout */
         .section-title {
             font-size: 11px;
             color: #555;
@@ -167,6 +178,7 @@
             font-size: 11px;
             color: #555;
             margin-bottom: 16px;
+            letter-spacing: 1px;
         }
 
         .card-title {
@@ -190,6 +202,7 @@
             gap: 16px;
         }
 
+        /* Feature Row */
         .feature-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -218,6 +231,7 @@
             line-height: 1.6;
         }
 
+        /* Full Width Banner */
         .banner {
             margin: 80px 0;
             text-align: center;
@@ -230,6 +244,12 @@
             margin-bottom: 24px;
         }
 
+        .banner-sub {
+            color: #555;
+            font-size: 14px;
+        }
+
+        /* Footer */
         .footer {
             margin-top: 80px;
             padding: 60px 0 40px;
@@ -247,6 +267,7 @@
             font-size: 12px;
             font-weight: 500;
             margin-bottom: 20px;
+            letter-spacing: 1px;
         }
 
         .footer-col p {
@@ -267,7 +288,6 @@
             color: #555;
             text-decoration: none;
             font-size: 13px;
-            cursor: pointer;
             transition: color 0.2s;
         }
 
@@ -283,68 +303,7 @@
             color: #444;
         }
 
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(8px);
-        }
-
-        .modal-content {
-            text-align: center;
-            max-width: 500px;
-            padding: 40px;
-        }
-
-        .modal-image {
-            font-size: 120px;
-            margin-bottom: 30px;
-            animation: wiggle 0.5s ease-in-out;
-        }
-
-        @keyframes wiggle {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(-10deg); }
-            75% { transform: rotate(10deg); }
-        }
-
-        .modal-title {
-            font-size: 32px;
-            font-weight: 600;
-            margin-bottom: 16px;
-        }
-
-        .modal-message {
-            font-size: 16px;
-            color: #888;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .modal-button {
-            background: #fff;
-            color: #000;
-            border: none;
-            padding: 12px 30px;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            border-radius: 30px;
-            transition: opacity 0.2s;
-        }
-
-        .modal-button:hover {
-            opacity: 0.8;
-        }
-
+        /* Responsive */
         @media (max-width: 900px) {
             .container {
                 padding: 0 20px;
@@ -354,12 +313,15 @@
             }
             .news-grid {
                 grid-template-columns: 1fr;
+                gap: 40px;
             }
             .feature-row {
                 grid-template-columns: 1fr;
+                gap: 40px;
             }
             .footer-grid {
                 grid-template-columns: 1fr;
+                gap: 40px;
             }
             .banner-quote {
                 font-size: 32px;
@@ -385,11 +347,11 @@
 
         <div class="nav">
             <div class="nav-links">
-                <a href="#" onclick="showWorkInProgress('Intelligence Feed')">INTELLIGENCE</a>
-                <a href="#" onclick="showWorkInProgress('Breach Database')">BREACHES</a>
-                <a href="#" onclick="showWorkInProgress('Vulnerability Tracker')">VULNERABILITIES</a>
-                <a href="#" onclick="showWorkInProgress('Threat Analysis')">ANALYSIS</a>
-                <a href="#" onclick="showWorkInProgress('Security Reports')">REPORTS</a>
+                <a href="#">INTELLIGENCE</a>
+                <a href="#">BREACHES</a>
+                <a href="#">VULNERABILITIES</a>
+                <a href="#">ANALYSIS</a>
+                <a href="#">REPORTS</a>
             </div>
         </div>
 
@@ -429,6 +391,11 @@
             <div class="banner-sub">Powered by open source intelligence · Updated continuously</div>
         </div>
 
+        <div class="section-title">THREAT LANDSCAPE</div>
+        <div id="secondaryGrid" class="news-grid">
+            <!-- Secondary news will load here -->
+        </div>
+
         <div class="footer">
             <div class="footer-grid">
                 <div class="footer-col">
@@ -438,28 +405,28 @@
                 <div class="footer-col">
                     <h4>INTELLIGENCE</h4>
                     <ul>
-                        <li><a onclick="showWorkInProgress('Daily Briefing')">Daily Briefing</a></li>
-                        <li><a onclick="showWorkInProgress('Threat Reports')">Threat Reports</a></li>
-                        <li><a onclick="showWorkInProgress('Vulnerability Database')">Vulnerability Database</a></li>
-                        <li><a onclick="showWorkInProgress('APT Tracking')">APT Tracking</a></li>
+                        <li><a href="#">Daily Briefing</a></li>
+                        <li><a href="#">Threat Reports</a></li>
+                        <li><a href="#">Vulnerability Database</a></li>
+                        <li><a href="#">APT Tracking</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>RESOURCES</h4>
                     <ul>
-                        <li><a onclick="showWorkInProgress('API Access')">API Access</a></li>
-                        <li><a onclick="showWorkInProgress('Research')">Research</a></li>
-                        <li><a onclick="showWorkInProgress('Documentation')">Documentation</a></li>
-                        <li><a onclick="showWorkInProgress('Contact')">Contact</a></li>
+                        <li><a href="#">API Access</a></li>
+                        <li><a href="#">Research</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>LEGAL</h4>
                     <ul>
-                        <li><a onclick="showWorkInProgress('Terms of Service')">Terms of Service</a></li>
-                        <li><a onclick="showWorkInProgress('Privacy Policy')">Privacy Policy</a></li>
-                        <li><a onclick="showWorkInProgress('Disclaimer')">Disclaimer</a></li>
-                        <li><a onclick="showWorkInProgress('Report a Threat')">Report a Threat</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Disclaimer</a></li>
+                        <li><a href="#">Report a Threat</a></li>
                     </ul>
                 </div>
             </div>
@@ -469,54 +436,8 @@
         </div>
     </div>
 
-    <!-- Work in Progress Modal -->
-    <div id="wipModal" class="modal" onclick="closeModal()">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <div class="modal-image">
-                <i class="fas fa-laptop-code"></i>
-            </div>
-            <h2 class="modal-title" id="modalTitle">Work in Progress</h2>
-            <p class="modal-message" id="modalMessage">
-                Our team of highly caffeinated hackers is working on this feature.<br>
-                <span style="font-size: 14px; display: block; margin-top: 10px;">🚧 Under construction 🚧</span>
-            </p>
-            <button class="modal-button" onclick="closeModal()">Got it, carry on</button>
-        </div>
-    </div>
-
     <script>
         let articles = [];
-        let currentModal = null;
-
-        function showWorkInProgress(featureName) {
-            const modal = document.getElementById('wipModal');
-            const title = document.getElementById('modalTitle');
-            const message = document.getElementById('modalMessage');
-            
-            const funnyMessages = [
-                `Our intern spilled coffee on the ${featureName} server. Come back later! ☕`,
-                `The hacker you're looking for is on a coffee break. ☕`,
-                `This feature is being encrypted... for your privacy. 🔒`,
-                `404: Feature not found (but we're working on it).`,
-                `Our hamsters are still building this feature. 🐹`,
-                `This area is protected by 256-bit excuses.`,
-                `The ${featureName} module is currently downloading more RAM.`,
-                `Our developers are debugging... their life choices. 🐛`,
-                `This feature is in the 'it works on my machine' phase.`,
-                `Please wait. Loading funny message... (just kidding, it's under construction)`
-            ];
-            
-            const randomMessage = funnyMessages[Math.floor(Math.random() * funnyMessages.length)];
-            
-            title.textContent = `${featureName} — Coming Soon`;
-            message.innerHTML = `${randomMessage}<br><span style="font-size: 13px; display: block; margin-top: 12px;">We're building something awesome. Check back soon!</span>`;
-            
-            modal.style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('wipModal').style.display = 'none';
-        }
 
         async function fetchThreatIntel() {
             const sources = [
@@ -562,7 +483,10 @@
 
         function render() {
             const mainGrid = document.getElementById('newsGrid');
+            const secondaryGrid = document.getElementById('secondaryGrid');
+            
             const mainArticles = articles.slice(0, 6);
+            const secondaryArticles = articles.slice(6, 12);
             
             mainGrid.innerHTML = mainArticles.map(a => `
                 <div class="news-card" onclick="window.open('${a.link}', '_blank')">
@@ -575,82 +499,24 @@
                     </div>
                 </div>
             `).join('');
-        }
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
+            
+            if (secondaryArticles.length) {
+                secondaryGrid.innerHTML = secondaryArticles.map(a => `
+                    <div class="news-card" onclick="window.open('${a.link}', '_blank')">
+                        <div class="card-category">${a.source}</div>
+                        <div class="card-title">${a.title.substring(0, 70)}${a.title.length > 70 ? '...' : ''}</div>
+                        <div class="card-excerpt">${a.excerpt}...</div>
+                        <div class="card-meta">
+                            <span>${a.date}</span>
+                            <span>READ →</span>
+                        </div>
+                    </div>
+                `).join('');
             }
-        });
+        }
 
         fetchThreatIntel();
         setInterval(fetchThreatIntel, 300000);
     </script>
 </body>
 </html>
-<!-- Add modal HTML at the end of body, before closing body tag -->
-<div id="wipModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:10000; justify-content:center; align-items:center; backdrop-filter:blur(8px);">
-    <div style="text-align:center; max-width:500px; padding:40px; background:#0a0c10; border-radius:16px; border:1px solid #2a2e35;">
-        <div style="font-size:80px; margin-bottom:20px;">
-            <i class="fas fa-hackerrank"></i>
-        </div>
-        <h2 id="modalTitle" style="font-size:28px; margin-bottom:16px;">Work in Progress</h2>
-        <p id="modalMessage" style="color:#888; line-height:1.6; margin-bottom:30px;">Our team of highly caffeinated hackers is working on this feature.</p>
-        <button onclick="closeWIP()" style="background:#fff; color:#000; border:none; padding:12px 30px; border-radius:30px; cursor:pointer;">Got it, carry on</button>
-    </div>
-</div>
-
-<script>
-function showWIP(featureName) {
-    const funnyMessages = {
-        'About Us': "We're secretly 3 raccoons in a trench coat building this platform. 🦝",
-        'Contact': "Our contact form is currently being guarded by a grumpy firewall. 📞",
-        'Privacy Policy': "We promise not to sell your data... to boring people. 🤫",
-        'Terms of Service': "You agree to bring us coffee. Read carefully. ☕",
-        'Data Breaches': "Our breach database is leaking... into the next sprint. 💧",
-        'Ransomware': "This feature was kidnapped. Pay 100 imaginary dollars. 💰",
-        'Vulnerabilities': "The only vulnerability here is our deadline. 😅",
-        'Advertise': "Your ad could be here! (If we knew how to code ads) 📢"
-    };
-    
-    const defaultMessages = [
-        "Our intern spilled coffee on this server! ☕",
-        "The hacker you're looking for is on a coffee break. 🍩",
-        "This feature is being encrypted... for your privacy. 🔒",
-        "404: Feature not found (but we're working on it). 🔍",
-        "Our hamsters are still building this feature. 🐹",
-        "This area is protected by 256-bit excuses. 🛡️"
-    ];
-    
-    const modal = document.getElementById('wipModal');
-    const title = document.getElementById('modalTitle');
-    const message = document.getElementById('modalMessage');
-    
-    const customMsg = funnyMessages[featureName];
-    const randomMsg = customMsg || defaultMessages[Math.floor(Math.random() * defaultMessages.length)];
-    
-    title.textContent = featureName + ' — Coming Soon';
-    message.innerHTML = randomMsg + '<br><span style="display:block; margin-top:12px;">🚧 Under construction 🚧</span>';
-    
-    modal.style.display = 'flex';
-}
-
-function closeWIP() {
-    document.getElementById('wipModal').style.display = 'none';
-}
-
-// Make all footer links show the modal instead of doing nothing
-document.addEventListener('DOMContentLoaded', function() {
-    const linksToFix = document.querySelectorAll('.footer-col a, .nav-links a, .quick-links a');
-    linksToFix.forEach(link => {
-        const originalOnClick = link.getAttribute('onclick');
-        if (!originalOnClick || originalOnClick === 'return false') {
-            const text = link.innerText.trim();
-            link.setAttribute('onclick', `showWIP('${text}'); return false;`);
-            link.removeAttribute('href');
-            link.style.cursor = 'pointer';
-        }
-    });
-});
-</script>
