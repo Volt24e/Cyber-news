@@ -43,6 +43,7 @@
             font-size: 28px;
             font-weight: 500;
             letter-spacing: -0.5px;
+            cursor: pointer;
         }
 
         .logo h1 span {
@@ -247,6 +248,7 @@
             font-size: 12px;
             font-weight: 500;
             margin-bottom: 20px;
+            letter-spacing: 1px;
         }
 
         .footer-col p {
@@ -302,11 +304,23 @@
             text-align: center;
             max-width: 500px;
             padding: 40px;
+            animation: modalPop 0.3s ease-out;
+        }
+
+        @keyframes modalPop {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .modal-image {
-            font-size: 120px;
-            margin-bottom: 30px;
+            font-size: 100px;
+            margin-bottom: 20px;
             animation: wiggle 0.5s ease-in-out;
         }
 
@@ -317,7 +331,7 @@
         }
 
         .modal-title {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 600;
             margin-bottom: 16px;
         }
@@ -360,6 +374,7 @@
             }
             .footer-grid {
                 grid-template-columns: 1fr;
+                gap: 40px;
             }
             .banner-quote {
                 font-size: 32px;
@@ -372,7 +387,7 @@
     <div class="container">
         <div class="site-header">
             <div class="header-inner">
-                <div class="logo">
+                <div class="logo" onclick="scrollToTop()">
                     <h1>SECURE<span>/INTEL</span></h1>
                     <p>cyber threat intelligence</p>
                 </div>
@@ -385,11 +400,11 @@
 
         <div class="nav">
             <div class="nav-links">
-                <a href="#" onclick="showWorkInProgress('Intelligence Feed')">INTELLIGENCE</a>
-                <a href="#" onclick="showWorkInProgress('Breach Database')">BREACHES</a>
-                <a href="#" onclick="showWorkInProgress('Vulnerability Tracker')">VULNERABILITIES</a>
-                <a href="#" onclick="showWorkInProgress('Threat Analysis')">ANALYSIS</a>
-                <a href="#" onclick="showWorkInProgress('Security Reports')">REPORTS</a>
+                <a onclick="showWIP('Intelligence Feed')">INTELLIGENCE</a>
+                <a onclick="showWIP('Breach Database')">BREACHES</a>
+                <a onclick="showWIP('Vulnerability Tracker')">VULNERABILITIES</a>
+                <a onclick="showWIP('Threat Analysis')">ANALYSIS</a>
+                <a onclick="showWIP('Security Reports')">REPORTS</a>
             </div>
         </div>
 
@@ -433,33 +448,38 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <h4>SECURE/INTEL</h4>
-                    <p>Independent cyber threat intelligence platform providing real-time security incident tracking and analysis.</p>
+                    <p>Real-time cybersecurity threat intelligence platform monitoring global security incidents, data breaches, and emerging vulnerabilities.</p>
                 </div>
                 <div class="footer-col">
-                    <h4>INTELLIGENCE</h4>
+                    <h4>QUICK LINKS</h4>
                     <ul>
-                        <li><a onclick="showWorkInProgress('Daily Briefing')">Daily Briefing</a></li>
-                        <li><a onclick="showWorkInProgress('Threat Reports')">Threat Reports</a></li>
-                        <li><a onclick="showWorkInProgress('Vulnerability Database')">Vulnerability Database</a></li>
-                        <li><a onclick="showWorkInProgress('APT Tracking')">APT Tracking</a></li>
+                        <li><a onclick="showWIP('About Us')">About Us</a></li>
+                        <li><a onclick="showWIP('Editorial Policy')">Editorial Policy</a></li>
+                        <li><a onclick="showWIP('Advertise')">Advertise</a></li>
+                        <li><a onclick="showWIP('Contact')">Contact</a></li>
+                        <li><a onclick="showWIP('Privacy Policy')">Privacy Policy</a></li>
+                        <li><a onclick="showWIP('Terms of Service')">Terms of Service</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>RESOURCES</h4>
+                    <h4>CATEGORIES</h4>
                     <ul>
-                        <li><a onclick="showWorkInProgress('API Access')">API Access</a></li>
-                        <li><a onclick="showWorkInProgress('Research')">Research</a></li>
-                        <li><a onclick="showWorkInProgress('Documentation')">Documentation</a></li>
-                        <li><a onclick="showWorkInProgress('Contact')">Contact</a></li>
+                        <li><a onclick="showWIP('Data Breaches')">Data Breaches</a></li>
+                        <li><a onclick="showWIP('Ransomware')">Ransomware</a></li>
+                        <li><a onclick="showWIP('Vulnerabilities')">Vulnerabilities</a></li>
+                        <li><a onclick="showWIP('Nation-State Attacks')">Nation-State Attacks</a></li>
+                        <li><a onclick="showWIP('Cloud Security')">Cloud Security</a></li>
+                        <li><a onclick="showWIP('IoT Security')">IoT Security</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>LEGAL</h4>
+                    <h4>CONNECT</h4>
                     <ul>
-                        <li><a onclick="showWorkInProgress('Terms of Service')">Terms of Service</a></li>
-                        <li><a onclick="showWorkInProgress('Privacy Policy')">Privacy Policy</a></li>
-                        <li><a onclick="showWorkInProgress('Disclaimer')">Disclaimer</a></li>
-                        <li><a onclick="showWorkInProgress('Report a Threat')">Report a Threat</a></li>
+                        <li><a onclick="showWIP('Email Support')"><i class="fas fa-envelope"></i> security@cybersecnews.com</a></li>
+                        <li><a onclick="showWIP('Phone Support')"><i class="fas fa-phone"></i> +1 (800) 555-0199</a></li>
+                        <li><a onclick="showWIP('Twitter')"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a onclick="showWIP('LinkedIn')"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a onclick="showWIP('GitHub')"><i class="fab fa-github"></i> GitHub</a></li>
                     </ul>
                 </div>
             </div>
@@ -470,43 +490,62 @@
     </div>
 
     <!-- Work in Progress Modal -->
-    <div id="wipModal" class="modal" onclick="closeModal()">
+    <div id="wipModal" class="modal" onclick="closeWIP()">
         <div class="modal-content" onclick="event.stopPropagation()">
             <div class="modal-image">
-                <i class="fas fa-laptop-code"></i>
+                <i class="fas fa-hackerrank"></i>
             </div>
             <h2 class="modal-title" id="modalTitle">Work in Progress</h2>
             <p class="modal-message" id="modalMessage">
                 Our team of highly caffeinated hackers is working on this feature.<br>
                 <span style="font-size: 14px; display: block; margin-top: 10px;">🚧 Under construction 🚧</span>
             </p>
-            <button class="modal-button" onclick="closeModal()">Got it, carry on</button>
+            <button class="modal-button" onclick="closeWIP()">Got it, carry on</button>
         </div>
     </div>
 
     <script>
         let articles = [];
-        let currentModal = null;
 
-        function showWorkInProgress(featureName) {
+        const funnyMessages = {
+            'About Us': "We're secretly 3 raccoons in a trench coat building this platform. 🦝",
+            'Contact': "Our contact form is currently being guarded by a grumpy firewall. Try yelling? 📞",
+            'Privacy Policy': "We promise not to sell your data... to boring people. 🤫",
+            'Terms of Service': "You agree to bring us coffee. Read carefully. ☕",
+            'Data Breaches': "Our breach database is leaking... into the next sprint. 💧",
+            'Ransomware': "This feature was kidnapped. Pay 100 imaginary dollars to release it. 💰",
+            'Vulnerabilities': "The only vulnerability here is our deadline. 😅",
+            'API Access': "Our API is currently downloading more API. Please wait... 🔄",
+            'Advertise': "Your ad could be here! (If we knew how to code ads) 📢",
+            'Editorial Policy': "Our editor is a sentient AI that only writes dad jokes. 🤖"
+        };
+
+        const defaultMessages = [
+            "Our intern spilled coffee on this server. Come back later! ☕",
+            "The hacker you're looking for is on a coffee break. 🍩",
+            "This feature is being encrypted... for your privacy. 🔒",
+            "404: Feature not found (but we're working on it). 🔍",
+            "Our hamsters are still building this feature. 🐹",
+            "This area is protected by 256-bit excuses. 🛡️",
+            "Our developers are debugging... their life choices. 🐛",
+            "This feature is in the 'it works on my machine' phase. 💻",
+            "Please wait. Loading funny message... (just kidding, it's under construction) ⏳",
+            "We ran out of RAM. Please insert more jokes. 🃏"
+        ];
+
+        function showWIP(featureName) {
             const modal = document.getElementById('wipModal');
             const title = document.getElementById('modalTitle');
             const message = document.getElementById('modalMessage');
             
-            const funnyMessages = [
-                `Our intern spilled coffee on the ${featureName} server. Come back later! ☕`,
-                `The hacker you're looking for is on a coffee break. ☕`,
-                `This feature is being encrypted... for your privacy. 🔒`,
-                `404: Feature not found (but we're working on it).`,
-                `Our hamsters are still building this feature. 🐹`,
-                `This area is protected by 256-bit excuses.`,
-                `The ${featureName} module is currently downloading more RAM.`,
-                `Our developers are debugging... their life choices. 🐛`,
-                `This feature is in the 'it works on my machine' phase.`,
-                `Please wait. Loading funny message... (just kidding, it's under construction)`
-            ];
+            let customMessage = funnyMessages[featureName];
+            let randomMessage;
             
-            const randomMessage = funnyMessages[Math.floor(Math.random() * funnyMessages.length)];
+            if (customMessage) {
+                randomMessage = customMessage;
+            } else {
+                randomMessage = defaultMessages[Math.floor(Math.random() * defaultMessages.length)];
+            }
             
             title.textContent = `${featureName} — Coming Soon`;
             message.innerHTML = `${randomMessage}<br><span style="font-size: 13px; display: block; margin-top: 12px;">We're building something awesome. Check back soon!</span>`;
@@ -514,8 +553,12 @@
             modal.style.display = 'flex';
         }
 
-        function closeModal() {
+        function closeWIP() {
             document.getElementById('wipModal').style.display = 'none';
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         async function fetchThreatIntel() {
@@ -564,6 +607,11 @@
             const mainGrid = document.getElementById('newsGrid');
             const mainArticles = articles.slice(0, 6);
             
+            if (mainArticles.length === 0) {
+                mainGrid.innerHTML = '<div style="text-align: center; grid-column: 1/-1; padding: 60px; color: #555;">Loading intelligence feed...</div>';
+                return;
+            }
+            
             mainGrid.innerHTML = mainArticles.map(a => `
                 <div class="news-card" onclick="window.open('${a.link}', '_blank')">
                     <div class="card-category">${a.source}</div>
@@ -577,10 +625,9 @@
             `).join('');
         }
 
-        // Close modal with Escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                closeModal();
+                closeWIP();
             }
         });
 
