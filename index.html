@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>CyberSec News | Premium Security Intelligence</title>
+    <title>CyberSec News | Live Security Updates</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -32,17 +32,6 @@
             overflow: hidden;
         }
 
-        .bg-animation::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(14, 165, 233, 0.15) 0%, transparent 50%);
-        }
-
         .particle {
             position: absolute;
             background: linear-gradient(135deg, #6366f1, #0ea5e9);
@@ -52,20 +41,10 @@
         }
 
         @keyframes float {
-            0% {
-                transform: translateY(100vh) translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.3;
-            }
-            90% {
-                opacity: 0.3;
-            }
-            100% {
-                transform: translateY(-100vh) translateX(100px);
-                opacity: 0;
-            }
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
         }
 
         .container {
@@ -84,7 +63,6 @@
             padding: 30px 40px;
             margin-bottom: 30px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
 
         .header-content {
@@ -111,7 +89,6 @@
             align-items: center;
             justify-content: center;
             font-size: 28px;
-            box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
         }
 
         .logo-text h1 {
@@ -126,12 +103,12 @@
         .logo-text p {
             font-size: 12px;
             color: #94a3b8;
-            margin-top: 4px;
         }
 
         .stats {
             display: flex;
             gap: 15px;
+            align-items: center;
         }
 
         .stat-card {
@@ -139,20 +116,25 @@
             padding: 10px 20px;
             border-radius: 20px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .stat-label {
-            font-size: 11px;
-            color: #94a3b8;
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .stat-value {
             font-size: 24px;
             font-weight: 700;
-            margin-top: 5px;
+        }
+
+        .live-badge {
+            background: #ef4444;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
         }
 
         .refresh-btn {
@@ -166,11 +148,6 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            transition: transform 0.2s;
-        }
-
-        .refresh-btn:hover {
-            transform: translateY(-2px);
         }
 
         /* Search */
@@ -180,19 +157,10 @@
             border-radius: 24px;
             padding: 20px 30px;
             margin-bottom: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .search-wrapper {
             position: relative;
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #94a3b8;
         }
 
         .search-input {
@@ -203,38 +171,22 @@
             border-radius: 20px;
             font-size: 16px;
             color: white;
-            font-family: 'Inter', sans-serif;
         }
 
-        .search-input:focus {
-            outline: none;
-            border-color: #6366f1;
-        }
-
-        .search-input::placeholder {
-            color: #64748b;
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
         }
 
         /* Filters */
-        .filters-section {
-            margin-bottom: 30px;
-        }
-
-        .filters-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-            font-size: 13px;
-            color: #94a3b8;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
         .filters {
             display: flex;
             gap: 12px;
             flex-wrap: wrap;
+            margin-bottom: 30px;
         }
 
         .filter-btn {
@@ -243,20 +195,13 @@
             padding: 10px 24px;
             border-radius: 30px;
             cursor: pointer;
-            font-size: 13px;
             font-weight: 600;
             color: #94a3b8;
             transition: all 0.3s;
         }
 
-        .filter-btn:hover {
-            background: rgba(99, 102, 241, 0.2);
-            border-color: #6366f1;
-        }
-
         .filter-btn.active {
             background: linear-gradient(135deg, #6366f1, #0ea5e9);
-            border-color: transparent;
             color: white;
         }
 
@@ -280,7 +225,6 @@
         .incident-card:hover {
             transform: translateY(-5px);
             border-color: #6366f1;
-            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.3);
         }
 
         .severity-bar {
@@ -294,7 +238,6 @@
         .card-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
             margin-bottom: 16px;
             flex-wrap: wrap;
             gap: 10px;
@@ -305,38 +248,16 @@
             border-radius: 20px;
             font-size: 11px;
             font-weight: 700;
-            text-transform: uppercase;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
         }
 
-        .severity-critical {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: white;
-        }
-
-        .severity-high {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: white;
-        }
-
-        .severity-medium {
-            background: linear-gradient(135deg, #eab308, #ca8a04);
-            color: white;
-        }
-
-        .severity-low {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-        }
+        .severity-critical { background: #ef4444; color: white; }
+        .severity-high { background: #f59e0b; color: white; }
+        .severity-medium { background: #eab308; color: white; }
+        .severity-low { background: #10b981; color: white; }
 
         .source {
             font-size: 12px;
             color: #94a3b8;
-            display: flex;
-            align-items: center;
-            gap: 6px;
         }
 
         .card-title {
@@ -356,7 +277,6 @@
         .card-footer {
             display: flex;
             justify-content: space-between;
-            align-items: center;
             padding-top: 16px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -364,105 +284,41 @@
         .date {
             font-size: 12px;
             color: #94a3b8;
-            display: flex;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(99, 102, 241, 0.3);
+            border-top-color: #6366f1;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .auto-update {
+            background: rgba(16, 185, 129, 0.2);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            display: inline-flex;
             align-items: center;
-            gap: 6px;
-        }
-
-        .read-more {
-            font-size: 13px;
-            font-weight: 600;
-            color: #a5b4fc;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(20px);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .modal-content {
-            max-width: 600px;
-            width: 100%;
-            max-height: 85vh;
-            overflow-y: auto;
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            border-radius: 32px;
-            padding: 32px;
-            border: 1px solid rgba(99, 102, 241, 0.3);
-        }
-
-        .modal-close {
-            float: right;
-            font-size: 28px;
-            cursor: pointer;
-            color: #94a3b8;
-            margin: -10px -10px 0 0;
-        }
-
-        .modal-close:hover {
-            color: white;
-        }
-
-        .modal-title {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            margin-top: 0;
-            padding-right: 30px;
-        }
-
-        .modal-meta {
-            background: rgba(99, 102, 241, 0.1);
-            padding: 20px;
-            border-radius: 20px;
-            margin-bottom: 24px;
-        }
-
-        .modal-meta-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
-            font-size: 14px;
-        }
-
-        .modal-button {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #6366f1, #0ea5e9);
-            border: none;
-            border-radius: 16px;
-            color: white;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 20px;
+            gap: 8px;
         }
 
         @media (max-width: 768px) {
-            .container {
-                padding: 12px;
-            }
-            .glass-header {
-                padding: 20px;
-            }
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
+            .container { padding: 12px; }
+            .glass-header { padding: 20px; }
+            .cards-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -478,147 +334,189 @@
                     </div>
                     <div class="logo-text">
                         <h1>CyberSec News</h1>
-                        <p>Premium Security Intelligence</p>
+                        <p>Live Security Intelligence</p>
                     </div>
                 </div>
                 <div class="stats">
                     <div class="stat-card">
-                        <div class="stat-label">Active Threats</div>
-                        <div class="stat-value" id="totalCount">0</div>
+                        <div class="stat-value" id="incidentCount">0</div>
+                        <div style="font-size: 11px;">Incidents</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-label">Last Update</div>
                         <div class="stat-value" id="updateTime">--:--</div>
+                        <div style="font-size: 11px;">Last Update</div>
                     </div>
-                    <button class="refresh-btn" onclick="loadData()">
-                        <i class="fas fa-sync-alt"></i>
-                        Refresh
+                    <div class="live-badge">
+                        <i class="fas fa-circle" style="font-size: 8px;"></i> LIVE
+                    </div>
+                    <button class="refresh-btn" onclick="fetchNews()">
+                        <i class="fas fa-sync-alt"></i> Refresh
                     </button>
                 </div>
+            </div>
+            <div class="auto-update">
+                <i class="fas fa-sync-alt fa-spin"></i>
+                Auto-updates every 5 minutes
             </div>
         </div>
 
         <div class="search-glass">
             <div class="search-wrapper">
                 <i class="fas fa-search search-icon"></i>
-                <input type="text" class="search-input" id="searchInput" placeholder="Search incidents..." onkeyup="filterData()">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search incidents..." onkeyup="filterIncidents()">
             </div>
         </div>
 
-        <div class="filters-section">
-            <div class="filters-title">
-                <i class="fas fa-filter"></i>
-                <span>Filter by Severity</span>
-            </div>
-            <div class="filters" id="filters"></div>
-        </div>
-
+        <div class="filters" id="filters"></div>
         <div id="incidentsContainer"></div>
     </div>
 
-    <div id="modal" class="modal" onclick="closeModal()">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <i class="fas fa-times modal-close" onclick="closeModal()"></i>
-            <div id="modalContent"></div>
-        </div>
-    </div>
-
     <script>
-        // Create particles
-        for(let i = 0; i < 30; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            const size = Math.random() * 4 + 2;
-            particle.style.width = size + 'px';
-            particle.style.height = size + 'px';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 20 + 's';
-            particle.style.animationDuration = 15 + Math.random() * 10 + 's';
-            document.getElementById('bgAnimation').appendChild(particle);
-        }
-
-        let incidents = [];
+        let allIncidents = [];
         let currentFilter = 'all';
 
-        const data = [
-            { id: 1, title: 'CRITICAL: Major Healthcare Ransomware Attack', summary: 'Major healthcare provider hit by sophisticated ransomware attack affecting patient records. Attackers demanding $5M ransom.', date: '2026-05-19', source: 'HealthSec', severity: 'critical' },
-            { id: 2, title: 'Data Breach Exposes 10 Million User Records', summary: 'Popular social media platform suffered massive data breach exposing emails, passwords, and personal data of 10M users.', date: '2026-05-19', source: 'DataBreach', severity: 'high' },
-            { id: 3, title: 'Chrome Zero-Day Under Active Attack', summary: 'Google releases emergency patch for zero-day vulnerability in Chrome being actively exploited.', date: '2026-05-18', source: 'Google Security', severity: 'critical' },
-            { id: 4, title: 'Major DDoS Attack Hits Financial Sector', summary: 'Multiple banks experiencing coordinated DDoS attacks causing service disruptions.', date: '2026-05-18', source: 'FinSec', severity: 'medium' },
-            { id: 5, title: 'Cryptocurrency Phishing Campaign', summary: 'Sophisticated phishing campaign targets crypto users, stealing over $10M in digital assets.', date: '2026-05-17', source: 'CryptoAlert', severity: 'medium' },
-            { id: 6, title: 'SCADA Vulnerability in Power Grid', summary: 'Critical vulnerability in industrial control systems could allow attackers to disrupt power grids.', date: '2026-05-17', source: 'ICS-CERT', severity: 'critical' },
-            { id: 7, title: 'Email Marketing Platform Data Leak', summary: 'Popular email service exposed customer data of over 50,000 businesses.', date: '2026-05-16', source: 'Email Security', severity: 'high' },
-            { id: 8, title: 'Android Banking Trojan Discovered', summary: 'New Android malware targets over 200 banking apps, stealing credentials and 2FA codes.', date: '2026-05-16', source: 'MalwareLab', severity: 'high' }
+        // FREE RSS to JSON API (no API key needed!)
+        const RSS_SOURCES = [
+            { name: 'The Hacker News', url: 'https://api.rss2json.com/v1/api.json?rss_url=https://feeds.feedburner.com/TheHackersNews' },
+            { name: 'Bleeping Computer', url: 'https://api.rss2json.com/v1/api.json?rss_url=https://www.bleepingcomputer.com/feed/' },
+            { name: 'Security Week', url: 'https://api.rss2json.com/v1/api.json?rss_url=https://www.securityweek.com/feed' },
+            { name: 'Cybersecurity News', url: 'https://api.rss2json.com/v1/api.json?rss_url=https://cybersecuritynews.com/feed/' }
         ];
 
-        function loadData() {
-            document.getElementById('incidentsContainer').innerHTML = '<div style="text-align:center;padding:60px;">Loading security intelligence...</div>';
-            setTimeout(() => {
-                incidents = data;
-                document.getElementById('totalCount').innerHTML = incidents.length;
-                document.getElementById('updateTime').innerHTML = new Date().toLocaleTimeString();
-                filterData();
-            }, 500);
+        // Free News API (alternative - no key needed)
+        const FREE_NEWS_API = 'https://gnews.io/api/v4/search?q=cybersecurity%20breach%20attack&lang=en&max=20';
+
+        function getSeverity(title) {
+            const text = title.toLowerCase();
+            if (text.includes('critical') || text.includes('ransomware') || text.includes('zero-day')) return 'critical';
+            if (text.includes('breach') || text.includes('hack') || text.includes('exposed')) return 'high';
+            if (text.includes('vulnerability') || text.includes('malware') || text.includes('phishing')) return 'medium';
+            return 'low';
         }
 
-        function filterData() {
-            const search = document.getElementById('searchInput').value.toLowerCase();
-            let filtered = incidents.filter(i => {
-                const matchFilter = currentFilter === 'all' || i.severity === currentFilter;
-                const matchSearch = i.title.toLowerCase().includes(search) || i.summary.toLowerCase().includes(search);
-                return matchFilter && matchSearch;
+        async function fetchNews() {
+            document.getElementById('incidentsContainer').innerHTML = '<div class="loading"><div class="spinner"></div><p>Fetching live cybersecurity news...</p></div>';
+            
+            let allArticles = [];
+
+            // Method 1: Try RSS feeds (free, no API key)
+            for (const source of RSS_SOURCES) {
+                try {
+                    const response = await fetch(source.url);
+                    const data = await response.json();
+                    if (data.items) {
+                        data.items.forEach(item => {
+                            allArticles.push({
+                                title: item.title,
+                                summary: item.description?.replace(/<[^>]*>/g, '').substring(0, 200) || 'Click to read more',
+                                date: new Date(item.pubDate).toLocaleDateString(),
+                                source: source.name,
+                                link: item.link,
+                                severity: getSeverity(item.title)
+                            });
+                        });
+                    }
+                } catch (error) {
+                    console.log(`Failed to fetch from ${source.name}`);
+                }
+            }
+
+            // Method 2: Try GNews API (free tier)
+            try {
+                const response = await fetch(FREE_NEWS_API);
+                const data = await response.json();
+                if (data.articles) {
+                    data.articles.forEach(article => {
+                        allArticles.push({
+                            title: article.title,
+                            summary: article.description?.substring(0, 200) || article.content?.substring(0, 200) || 'Security incident reported',
+                            date: new Date(article.publishedAt).toLocaleDateString(),
+                            source: article.source?.name || 'Security News',
+                            link: article.url,
+                            severity: getSeverity(article.title)
+                        });
+                    });
+                }
+            } catch (error) {
+                console.log('GNews API failed, using RSS only');
+            }
+
+            // Remove duplicates (based on title)
+            const uniqueArticles = [];
+            const titles = new Set();
+            for (const article of allArticles) {
+                if (!titles.has(article.title)) {
+                    titles.add(article.title);
+                    uniqueArticles.push(article);
+                }
+            }
+
+            // Sort by date (newest first)
+            uniqueArticles.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            allIncidents = uniqueArticles.slice(0, 50); // Limit to 50 articles
+            
+            document.getElementById('incidentCount').innerHTML = allIncidents.length;
+            document.getElementById('updateTime').innerHTML = new Date().toLocaleTimeString();
+            
+            if (allIncidents.length === 0) {
+                // Fallback to demo data if no news fetched
+                allIncidents = getDemoIncidents();
+            }
+            
+            filterIncidents();
+        }
+
+        function getDemoIncidents() {
+            return [
+                { id: 1, title: '🔴 CRITICAL: Major Healthcare Ransomware Attack', summary: 'Healthcare provider hit by ransomware affecting patient records.', date: new Date().toLocaleDateString(), source: 'Demo Feed', link: '#', severity: 'critical' },
+                { id: 2, title: '🟠 HIGH: Data Breach Exposes User Records', summary: 'Major data breach exposing millions of user records.', date: new Date().toLocaleDateString(), source: 'Demo Feed', link: '#', severity: 'high' },
+                { id: 3, title: '🔴 CRITICAL: Zero-Day Vulnerability Found', summary: 'New zero-day vulnerability being actively exploited.', date: new Date().toLocaleDateString(), source: 'Demo Feed', link: '#', severity: 'critical' }
+            ];
+        }
+
+        function filterIncidents() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            let filtered = allIncidents.filter(incident => {
+                const matchesFilter = currentFilter === 'all' || incident.severity === currentFilter;
+                const matchesSearch = incident.title.toLowerCase().includes(searchTerm) || 
+                                    incident.summary.toLowerCase().includes(searchTerm);
+                return matchesFilter && matchesSearch;
             });
-            displayCards(filtered);
+            displayIncidents(filtered);
         }
 
-        function displayCards(incidentsList) {
+        function displayIncidents(incidents) {
             const container = document.getElementById('incidentsContainer');
-            if(incidentsList.length === 0) {
-                container.innerHTML = '<div style="text-align:center;padding:60px;">No incidents found</div>';
+            if (incidents.length === 0) {
+                container.innerHTML = '<div class="loading"><p>No incidents found</p></div>';
                 return;
             }
+
             container.innerHTML = `
                 <div class="cards-grid">
-                    ${incidentsList.map(i => `
-                        <div class="incident-card" onclick="showDetails(${JSON.stringify(i).replace(/"/g, '&quot;')})">
-                            <div class="severity-bar severity-${i.severity}"></div>
+                    ${incidents.map(incident => `
+                        <div class="incident-card" onclick="window.open('${incident.link}', '_blank')">
+                            <div class="severity-bar severity-${incident.severity}"></div>
                             <div class="card-content">
                                 <div class="card-header">
-                                    <span class="severity-badge severity-${i.severity}">
-                                        <i class="fas ${i.severity === 'critical' ? 'fa-skull-crossbones' : i.severity === 'high' ? 'fa-exclamation-triangle' : 'fa-shield-alt'}"></i>
-                                        ${i.severity.toUpperCase()}
+                                    <span class="severity-badge severity-${incident.severity}">
+                                        <i class="fas ${incident.severity === 'critical' ? 'fa-skull-crossbones' : incident.severity === 'high' ? 'fa-exclamation-triangle' : 'fa-shield-alt'}"></i>
+                                        ${incident.severity.toUpperCase()}
                                     </span>
-                                    <span class="source"><i class="fas fa-newspaper"></i> ${i.source}</span>
+                                    <span class="source"><i class="fas fa-newspaper"></i> ${incident.source}</span>
                                 </div>
-                                <h3 class="card-title">${i.title}</h3>
-                                <p class="card-summary">${i.summary.substring(0, 120)}...</p>
+                                <h3 class="card-title">${incident.title}</h3>
+                                <p class="card-summary">${incident.summary.substring(0, 150)}...</p>
                                 <div class="card-footer">
-                                    <span class="date"><i class="far fa-calendar-alt"></i> ${i.date}</span>
-                                    <span class="read-more">Read Analysis <i class="fas fa-arrow-right"></i></span>
+                                    <span class="date"><i class="far fa-calendar-alt"></i> ${incident.date}</span>
+                                    <span style="color: #a5b4fc;">Read more →</span>
                                 </div>
                             </div>
                         </div>
                     `).join('')}
                 </div>
             `;
-        }
-
-        function showDetails(incident) {
-            document.getElementById('modalContent').innerHTML = `
-                <h2 class="modal-title">${incident.title}</h2>
-                <div class="modal-meta">
-                    <div class="modal-meta-item"><i class="fas fa-newspaper"></i> Source: ${incident.source}</div>
-                    <div class="modal-meta-item"><i class="far fa-calendar-alt"></i> Date: ${incident.date}</div>
-                    <div class="modal-meta-item"><i class="fas fa-exclamation-triangle"></i> Severity: ${incident.severity.toUpperCase()}</div>
-                </div>
-                <p>${incident.summary}</p>
-                <button class="modal-button" onclick="window.open('https://thehackernews.com','_blank')">Read Full Analysis →</button>
-            `;
-            document.getElementById('modal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('modal').style.display = 'none';
         }
 
         function setupFilters() {
@@ -635,12 +533,27 @@
             currentFilter = filter;
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
-            filterData();
+            filterIncidents();
+        }
+
+        // Create particles
+        for(let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            const size = Math.random() * 4 + 2;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = 15 + Math.random() * 10 + 's';
+            document.getElementById('bgAnimation').appendChild(particle);
         }
 
         setupFilters();
-        loadData();
-        setInterval(loadData, 300000);
+        fetchNews();
+        
+        // Auto-refresh every 5 minutes
+        setInterval(fetchNews, 300000);
     </script>
 </body>
 </html>
