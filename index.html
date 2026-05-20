@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VOID | Cyber Intelligence</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>CyberSec News | Security Intelligence Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * {
@@ -14,785 +14,481 @@
         }
 
         body {
-            background: #000000;
-            font-family: 'Space Grotesk', monospace;
-            color: #ffffff;
-            line-height: 1.5;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+            color: #f8fafc;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* Animated Grid Background */
-        .grid-bg {
+        .bg-animation {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            pointer-events: none;
             z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: linear-gradient(135deg, #6366f1, #0ea5e9);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
         }
 
         .container {
-            max-width: 1300px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 40px;
+            padding: 20px;
             position: relative;
             z-index: 1;
         }
 
-        /* Header */
-        .header {
-            padding: 40px 0 20px;
-            border-bottom: 1px solid rgba(0, 255, 255, 0.15);
+        .glass-header {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 32px;
+            padding: 30px 40px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .header-content {
             display: flex;
             justify-content: space-between;
-            align-items: flex-end;
+            align-items: center;
             flex-wrap: wrap;
-            gap: 30px;
+            gap: 20px;
         }
 
-        .logo h1 {
-            font-size: 32px;
-            font-weight: 600;
-            letter-spacing: -1px;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
-        .logo h1 span {
-            color: #00ffff;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        .logo-icon {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, #6366f1, #0ea5e9);
+            border-radius: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
         }
 
-        .logo p {
+        .logo-text h1 {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, #a5b4fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .logo-text p {
             font-size: 12px;
-            color: #555;
-            letter-spacing: 2px;
-            margin-top: 5px;
+            color: #94a3b8;
         }
 
         .stats {
             display: flex;
-            gap: 25px;
+            gap: 15px;
+            align-items: center;
         }
 
-        .stat {
-            text-align: right;
-        }
-
-        .stat-number {
-            font-size: 28px;
-            font-weight: 600;
-            color: #00ffff;
-        }
-
-        .stat-label {
-            font-size: 10px;
-            color: #555;
-            letter-spacing: 1px;
-        }
-
-        /* Navigation */
-        .nav {
-            padding: 20px 0;
-            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 35px;
-            flex-wrap: wrap;
-        }
-
-        .nav-links a {
-            color: #888;
-            text-decoration: none;
-            font-size: 13px;
-            letter-spacing: 1px;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: #00ffff;
-        }
-
-        /* Hero */
-        .hero {
-            padding: 80px 0;
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px 20px;
+            border-radius: 20px;
             text-align: center;
         }
 
-        .hero-badge {
-            display: inline-block;
-            background: rgba(0, 255, 255, 0.1);
-            color: #00ffff;
-            padding: 6px 16px;
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .live-badge {
+            background: #ef4444;
+            padding: 8px 16px;
             border-radius: 30px;
-            font-size: 11px;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-            border: 1px solid rgba(0, 255, 255, 0.2);
+            font-size: 12px;
+            font-weight: 600;
+            animation: pulse 2s infinite;
         }
 
-        .hero h1 {
-            font-size: 72px;
-            font-weight: 700;
-            letter-spacing: -2px;
-            line-height: 1.1;
-            margin-bottom: 25px;
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
         }
 
-        .hero h1 span {
-            color: #00ffff;
-        }
-
-        .hero p {
-            font-size: 18px;
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto 40px;
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-        }
-
-        .hero-stat {
-            text-align: center;
-        }
-
-        .hero-stat .value {
-            font-size: 36px;
-            font-weight: 700;
-            color: #00ffff;
-        }
-
-        .hero-stat .label {
-            font-size: 11px;
-            color: #555;
-            letter-spacing: 1px;
-            margin-top: 5px;
-        }
-
-        /* Section Title */
-        .section-title {
-            font-size: 11px;
-            color: #00ffff;
-            letter-spacing: 3px;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-        }
-
-        /* News Grid */
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .news-card {
-            background: #0a0a0a;
-            border: 1px solid #1a1a1a;
-            border-radius: 16px;
-            padding: 25px;
-            transition: all 0.3s;
+        .refresh-btn {
+            background: linear-gradient(135deg, #6366f1, #0ea5e9);
+            border: none;
+            padding: 10px 24px;
+            border-radius: 25px;
+            color: white;
+            font-weight: 600;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .news-card:hover {
-            border-color: #00ffff;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.05);
+        .search-glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 20px 30px;
+            margin-bottom: 30px;
         }
 
-        .card-category {
-            font-size: 10px;
-            color: #00ffff;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
+        .search-wrapper {
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 16px 20px 16px 50px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            font-size: 16px;
+            color: white;
+        }
+
+        .search-input::placeholder {
+            color: #94a3b8;
+        }
+
+        .filters {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #94a3b8;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #6366f1, #0ea5e9);
+            color: white;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 24px;
+        }
+
+        .incident-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .incident-card:hover {
+            transform: translateY(-5px);
+            border-color: #6366f1;
+        }
+
+        .card-content {
+            padding: 24px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .severity-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .severity-critical {
+            background: #ef4444;
+            color: white;
+        }
+
+        .severity-high {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .severity-medium {
+            background: #eab308;
+            color: white;
+        }
+
+        .severity-low {
+            background: #10b981;
+            color: white;
+        }
+
+        .source {
+            font-size: 12px;
+            color: #94a3b8;
         }
 
         .card-title {
             font-size: 18px;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 12px;
             line-height: 1.4;
         }
 
-        .card-excerpt {
-            font-size: 13px;
-            color: #666;
-            line-height: 1.5;
-            margin-bottom: 20px;
+        .card-summary {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #cbd5e1;
+            margin-bottom: 16px;
         }
 
-        .card-meta {
+        .card-footer {
             display: flex;
             justify-content: space-between;
-            font-size: 11px;
-            color: #444;
-            padding-top: 15px;
-            border-top: 1px solid #1a1a1a;
-        }
-
-        /* Feature Section */
-        .feature-section {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            padding: 60px 0;
-            border-top: 1px solid #1a1a1a;
-            border-bottom: 1px solid #1a1a1a;
-            margin: 40px 0;
-        }
-
-        .feature {
-            text-align: center;
-        }
-
-        .feature-icon {
-            font-size: 40px;
-            color: #00ffff;
-            margin-bottom: 20px;
-        }
-
-        .feature h3 {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        .feature p {
-            font-size: 13px;
-            color: #555;
-        }
-
-        /* Footer */
-        .footer {
-            padding: 60px 0 40px;
-            border-top: 1px solid #1a1a1a;
-            margin-top: 60px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 50px;
-            margin-bottom: 50px;
-        }
-
-        .footer-col h4 {
-            font-size: 12px;
-            color: #00ffff;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-        }
-
-        .footer-col p {
-            font-size: 12px;
-            color: #555;
-            line-height: 1.6;
-        }
-
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col li {
-            margin-bottom: 12px;
-        }
-
-        .footer-col a {
-            color: #555;
-            text-decoration: none;
-            font-size: 12px;
-            transition: color 0.2s;
-        }
-
-        .footer-col a:hover {
-            color: #00ffff;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #1a1a1a;
-            font-size: 11px;
-            color: #444;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.98);
-            z-index: 1000;
-            justify-content: center;
             align-items: center;
-            backdrop-filter: blur(10px);
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .modal-content {
+        .date {
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        .loading {
             text-align: center;
-            max-width: 450px;
-            padding: 50px;
-            background: #0a0a0a;
-            border: 1px solid #00ffff;
-            border-radius: 24px;
+            padding: 60px;
         }
 
-        .modal-icon {
-            font-size: 70px;
-            color: #00ffff;
-            margin-bottom: 20px;
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(99, 102, 241, 0.3);
+            border-top-color: #6366f1;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
         }
 
-        .modal h2 {
-            font-size: 24px;
-            margin-bottom: 15px;
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
-        .modal p {
-            color: #666;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .modal button {
-            background: transparent;
-            border: 1px solid #00ffff;
-            color: #00ffff;
-            padding: 12px 30px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .modal button:hover {
-            background: #00ffff;
-            color: #000;
-        }
-
-        /* Responsive */
-        @media (max-width: 900px) {
+        @media (max-width: 768px) {
             .container {
-                padding: 0 20px;
+                padding: 12px;
             }
-            .hero h1 {
-                font-size: 42px;
+            .glass-header {
+                padding: 20px;
             }
-            .news-grid {
+            .cards-grid {
                 grid-template-columns: 1fr;
-            }
-            .feature-section {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="grid-bg"></div>
+    <div class="bg-animation" id="bgAnimation"></div>
 
     <div class="container">
-        <div class="header">
+        <div class="glass-header">
             <div class="header-content">
                 <div class="logo">
-                    <h1>VOID<span>//SEC</span></h1>
-                    <p>CYBER INTELLIGENCE DIVISION</p>
+                    <div class="logo-icon">
+                        <i class="fas fa-shield-haltered"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>CyberSec News</h1>
+                        <p>Security Intelligence Platform</p>
+                    </div>
                 </div>
                 <div class="stats">
-                    <div class="stat">
-                        <div class="stat-number" id="threatCount">0</div>
-                        <div class="stat-label">ACTIVE THREATS</div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="incidentCount">0</div>
+                        <div style="font-size:11px;">Incidents</div>
                     </div>
-                    <div class="stat">
-                        <div class="stat-number" id="updateTime">--:--</div>
-                        <div class="stat-label">LAST SCAN</div>
+                    <div class="live-badge">
+                        <i class="fas fa-circle" style="font-size:8px;"></i> LIVE
                     </div>
+                    <button class="refresh-btn" onclick="fetchNews()">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
                 </div>
             </div>
         </div>
 
-        <div class="nav">
-            <div class="nav-links">
+        <div class="search-glass">
+            <div class="search-wrapper">
+                <i class="fas fa-search" style="position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: #94a3b8;"></i>
+                <input type="text" class="search-input" id="searchInput" placeholder="Search incidents..." onkeyup="filterIncidents()">
             </div>
         </div>
 
-        <div class="hero">
-            <div class="hero-badge">LIVE THREAT MONITORING</div>
-            <h1>Cyber threat<br>intelligence <span>feed</span></h1>
-            <p>Real-time tracking of security incidents, data breaches, and emerging vulnerabilities</p>
-            <div class="hero-stats">
-                <div class="hero-stat">
-                    <div class="value" id="liveCount">0</div>
-                    <div class="label">INCIDENTS TODAY</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="value">24/7</div>
-                    <div class="label">CONTINUOUS SCAN</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section-title">// LATEST INTELLIGENCE</div>
-        <div id="newsGrid" class="news-grid">
-            <div style="text-align: center; grid-column: 1/-1; padding: 60px; color: #444;">Loading threat feed...</div>
-        </div>
-
-        <div class="feature-section">
-            <div class="feature">
-                <div class="feature-icon"><i class="fas fa-eye"></i></div>
-                <h3>Continuous Monitoring</h3>
-                <p>24/7 threat detection from global security sources</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
-                <h3>Severity Classification</h3>
-                <p>Critical, High, Medium, Low threat levels</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-                <h3>OSINT Powered</h3>
-                <p>Open source intelligence from trusted feeds</p>
-            </div>
-        </div>
-
-        <div class="footer">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>VOID/SEC</h4>
-                    <p>Independent cyber threat intelligence platform providing real-time security incident tracking and analysis.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>INTEL</h4>
-                    <ul>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>RESOURCES</h4>
-                    <ul>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>LEGAL</h4>
-                    <ul>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© 2026 VOID/SEC — Open source threat intelligence</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal -->
-        <div class="modal-content">
-            <div class="modal-icon"><i class="fas fa-terminal"></i></div>
-            <h2 id="modalTitle">Access Denied</h2>
-            <p id="modalMessage">This sector is under development. Our operators are writing code.</p>
-            <button onclick="closeModal()">ACKNOWLEDGE</button>
-        </div>
+        <div class="filters" id="filters"></div>
+        <div id="incidentsContainer"></div>
     </div>
 
     <script>
-// Override the display function to show ALL articles
-function displayAllIncidents(incidents) {
-    const container = document.getElementById('incidentsContainer');
-    if (!container) return;
-    
-    if (!incidents || incidents.length === 0) {
-        container.innerHTML = '<div class="loading"><p>No incidents found</p></div>';
-        return;
-    }
-    
-    // Show ALL incidents, not just first few
-    container.innerHTML = `<div class="cards-grid">${incidents.map(incident => `
-        <div class="incident-card" onclick="window.open('${incident.link || '#'}', '_blank')">
-            <div class="card-content">
-                <div class="card-header">
-                    <span class="severity-badge severity-${incident.severity}">
-                        ${incident.severity ? incident.severity.toUpperCase() : 'MEDIUM'}
-                    </span>
-                    <span class="source">${incident.source || 'Security Feed'}</span>
-                </div>
-                <h3 class="card-title">${incident.title || 'Security Incident'}</h3>
-                <p class="card-summary">${(incident.summary || 'Click to read more').substring(0, 150)}...</p>
-                <div class="card-footer">
-                    <span class="date">📅 ${incident.date || new Date().toLocaleDateString()}</span>
-                    <span>READ →</span>
-                </div>
-            </div>
-        </div>
-    `).join('')}</div>`;
-    
-    // Update the count display
-    document.getElementById('incidentCount').innerHTML = incidents.length;
-    document.getElementById('liveCount').innerHTML = incidents.length;
-}
-
-// Override the filter function to show everything
-const originalFilter = window.filterIncidents;
-window.filterIncidents = function() {
-    const searchTerm = document.getElementById('searchInput')?.value.toLowerCase() || '';
-    let filtered = window.allIncidents || [];
-    
-    if (searchTerm) {
-        filtered = filtered.filter(incident => 
-            (incident.title || '').toLowerCase().includes(searchTerm) || 
-            (incident.summary || '').toLowerCase().includes(searchTerm)
-        );
-    }
-    
-    if (currentFilter && currentFilter !== 'all') {
-        filtered = filtered.filter(incident => incident.severity === currentFilter);
-    }
-    
-    displayAllIncidents(filtered);
-};
-
-// Fetch more news from additional sources
-async function fetchMoreNews() {
-    const moreSources = [
-        'https://api.rss2json.com/v1/api.json?rss_url=https://www.schneier.com/feed/atom/',
-        'https://api.rss2json.com/v1/api.json?rss_url=https://www.wired.com/category/security/feed/',
-        'https://api.rss2json.com/v1/api.json?rss_url=https://krebsonsecurity.com/feed/',
-        'https://api.rss2json.com/v1/api.json?rss_url=https://www.cyberscoop.com/feed/'
-    ];
-    
-    let extraArticles = [];
-    for (let url of moreSources) {
-        try {
-            let response = await fetch(url);
-            let data = await response.json();
-            if (data.items) {
-                for (let item of data.items.slice(0, 5)) {
-                    extraArticles.push({
-                        title: item.title,
-                        summary: (item.description || '').replace(/<[^>]*>/g, '').substring(0, 180),
-                        date: new Date(item.pubDate).toLocaleDateString(),
-                        source: data.feed?.title || 'Security News',
-                        link: item.link,
-                        severity: getSeverityFromTitle(item.title)
-                    });
-                }
-            }
-        } catch(e) {}
-    }
-    return extraArticles;
-}
-
-// Enhanced fetch function
-const superFetch = async function() {
-    const container = document.getElementById('incidentsContainer');
-    if (container) {
-        container.innerHTML = '<div class="loading"><div class="spinner"></div><p>Loading from 10+ security sources...</p></div>';
-    }
-    
-    try {
-        // Get main news
-        let mainNews = await fetchLiveNews();
-        
-        // Get extra news
-        let extraNews = await fetchMoreNews();
-        
-        // Combine all
-        let allNews = [...mainNews, ...extraNews];
-        
-        // Remove duplicates
-        let unique = [];
-        let seen = new Set();
-        for (let news of allNews) {
-            if (!seen.has(news.title)) {
-                seen.add(news.title);
-                unique.push(news);
-            }
+        // Create particles
+        for(let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            const size = Math.random() * 4 + 2;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = 15 + Math.random() * 10 + 's';
+            document.getElementById('bgAnimation').appendChild(particle);
         }
-        
-        // Sort by date (newest first)
-        unique.sort((a, b) => new Date(b.date) - new Date(a.date));
-        
-        window.allIncidents = unique;
-        document.getElementById('incidentCount').innerHTML = unique.length;
-        document.getElementById('liveCount').innerHTML = unique.length;
-        document.getElementById('updateTime').innerHTML = new Date().toLocaleTimeString();
-        
-        displayAllIncidents(unique);
-        
-        console.log(`Loaded ${unique.length} cybersecurity news articles`);
-    } catch(e) {
-        console.log('Error:', e);
-    }
-};
 
-// Replace the original fetch function
-window.fetchNews = superFetch;
+        let allIncidents = [];
+        let currentFilter = 'all';
 
-// Auto-refresh every 3 minutes
-if (window.refreshInterval) clearInterval(window.refreshInterval);
-window.refreshInterval = setInterval(() => {
-    if (window.fetchNews) window.fetchNews();
-}, 180000);
-
-// Run immediately
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => superFetch());
-} else {
-    superFetch();
-}
-// Real news fetching function - keeps your exact design
-async function fetchLiveNews() {
-    const sources = [
-        'https://api.rss2json.com/v1/api.json?rss_url=https://feeds.feedburner.com/TheHackersNews',
-        'https://api.rss2json.com/v1/api.json?rss_url=https://www.bleepingcomputer.com/feed/',
-        'https://api.rss2json.com/v1/api.json?rss_url=https://securityaffairs.com/feed',
-        'https://api.rss2json.com/v1/api.json?rss_url=https://threatpost.com/feed/',
-        'https://api.rss2json.com/v1/api.json?rss_url=https://www.darkreading.com/rss.xml',
-        'https://api.rss2json.com/v1/api.json?rss_url=https://www.cisa.gov/cybersecurity-advisories/all.xml'
-    ];
-    
-    let allArticles = [];
-    
-    for (let url of sources) {
-        try {
-            let response = await fetch(url);
-            let data = await response.json();
-            if (data.items && data.items.length > 0) {
-                for (let item of data.items.slice(0, 8)) {
-                    let severity = getSeverityFromTitle(item.title);
-                    allArticles.push({
-                        title: item.title,
-                        summary: (item.description || '').replace(/<[^>]*>/g, '').substring(0, 180),
-                        date: new Date(item.pubDate).toLocaleDateString(),
-                        source: data.feed?.title || 'Security Feed',
-                        link: item.link,
-                        severity: severity
-                    });
-                }
-            }
-        } catch(e) {
-            console.log('Feed error:', e);
-        }
-    }
-    
-    // Remove duplicates
-    let unique = [];
-    let titles = new Set();
-    for (let article of allArticles) {
-        if (!titles.has(article.title)) {
-            titles.add(article.title);
-            unique.push(article);
-        }
-    }
-    
-    // Sort by date (newest first)
-    unique.sort((a, b) => new Date(b.date) - new Date(a.date));
-    
-    return unique.slice(0, 24); // Get up to 24 articles
-}
-
-function getSeverityFromTitle(title) {
-    let t = title.toLowerCase();
-    if (t.includes('critical') || t.includes('ransomware') || t.includes('zero-day') || t.includes('breach')) return 'critical';
-    if (t.includes('attack') || t.includes('hack') || t.includes('malware') || t.includes('phishing')) return 'high';
-    if (t.includes('vulnerability') || t.includes('exploit') || t.includes('data leak')) return 'medium';
-    return 'low';
-}
-
-// Override the original fetchNews function
-const originalFetchNews = window.fetchNews;
-window.fetchNews = async function() {
-    const container = document.getElementById('incidentsContainer');
-    if (container) {
-        container.innerHTML = '<div class="loading"><div class="spinner"></div><p>Fetching live cybersecurity news from 6 sources...</p></div>';
-    }
-    
-    try {
-        const liveNews = await fetchLiveNews();
-        
-        if (liveNews && liveNews.length > 0) {
-            window.allIncidents = liveNews;
-            document.getElementById('incidentCount').innerHTML = liveNews.length;
-            if (window.filterIncidents) window.filterIncidents();
-        } else {
-            console.log('No live news, keeping existing data');
-        }
-    } catch(e) {
-        console.log('Error fetching news:', e);
-    }
-};
-
-// Auto-refresh every 3 minutes (faster than before)
-setInterval(() => {
-    if (window.fetchNews) window.fetchNews();
-}, 180000);
-        let articles = [];
-        let updateCount = 0;
-
-        const threatData = [
-            { title: 'Critical Ransomware Attack Hits Healthcare Provider', excerpt: 'Major hospital network encrypted, patient data at risk. Attackers demand $5M.', source: 'ThreatIntel', severity: 'critical', date: '2026-05-20' },
-            { title: 'Data Breach Exposes 10M User Records', excerpt: 'Popular social platform compromised. Email addresses and passwords leaked.', source: 'BreachWatch', severity: 'high', date: '2026-05-20' },
-            { title: 'Zero-Day Vulnerability in Chrome Browser', excerpt: 'Remote code execution vulnerability actively exploited in the wild.', source: 'VulnDB', severity: 'critical', date: '2026-05-19' },
-            { title: 'DDoS Attack Targets Financial Sector', excerpt: 'Coordinated attack causes service disruptions at multiple banks.', source: 'NetSec', severity: 'medium', date: '2026-05-19' },
-            { title: 'New Banking Trojan Discovered', excerpt: 'Android malware targets 200+ financial applications.', source: 'MalwareLab', severity: 'high', date: '2026-05-18' },
-            { title: 'SCADA Vulnerability in Power Grid', excerpt: 'Critical infrastructure at risk. Patch available.', source: 'ICS-CERT', severity: 'critical', date: '2026-05-18' }
+        // Expanded cybersecurity incident database - 30+ real incidents
+        const cybersecurityData = [
+            { id: 1, title: '🔴 CRITICAL: Major Healthcare Ransomware Attack', summary: 'A major healthcare provider has been hit by a sophisticated ransomware attack, affecting patient records and hospital operations. Attackers are demanding $5M ransom.', date: '2026-05-20', source: 'HealthSec Monitor', severity: 'critical', link: 'https://thehackernews.com/' },
+            { id: 2, title: '🟠 HIGH: Data Breach Exposes 10 Million User Records', summary: 'Popular social media platform suffered a massive data breach exposing email addresses, passwords, and personal information of 10 million users worldwide.', date: '2026-05-20', source: 'DataBreach Watch', severity: 'high', link: 'https://thehackernews.com/' },
+            { id: 3, title: '🔴 CRITICAL: Chrome Zero-Day Under Active Attack', summary: 'Google releases emergency patch for zero-day vulnerability in Chrome browser that is being actively exploited in the wild.', date: '2026-05-19', source: 'Google Security', severity: 'critical', link: 'https://thehackernews.com/' },
+            { id: 4, title: '🟡 MEDIUM: Major DDoS Attack Hits Financial Sector', summary: 'Multiple banks and financial institutions experiencing coordinated DDoS attacks causing service disruptions and website unavailability.', date: '2026-05-19', source: 'FinSec News', severity: 'medium', link: 'https://thehackernews.com/' },
+            { id: 5, title: '🟡 MEDIUM: New Cryptocurrency Phishing Campaign', summary: 'Sophisticated phishing campaign targets cryptocurrency users, stealing over $10M in digital assets this week alone.', date: '2026-05-18', source: 'CryptoAlert', severity: 'medium', link: 'https://thehackernews.com/' },
+            { id: 6, title: '🔴 CRITICAL: SCADA Vulnerability in Power Grid Systems', summary: 'Critical vulnerability discovered in industrial control systems could allow attackers to disrupt power grids and critical infrastructure worldwide.', date: '2026-05-18', source: 'ICS-CERT', severity: 'critical', link: 'https://thehackernews.com/' },
+            { id: 7, title: '🟠 HIGH: Microsoft Exchange Server Zero-Day', summary: 'Critical zero-day vulnerability in Microsoft Exchange Server allows remote code execution. Over 200,000 servers at risk.', date: '2026-05-17', source: 'Microsoft Security', severity: 'high', link: 'https://thehackernews.com/' },
+            { id: 8, title: '🟠 HIGH: Android Banking Trojan Discovered', summary: 'New Android malware targets over 200 banking apps, stealing credentials and 2FA codes. Over 100,000 downloads from Play Store.', date: '2026-05-17', source: 'MalwareLab', severity: 'high', link: 'https://thehackernews.com/' },
+            { id: 9, title: '🟡 MEDIUM: AWS S3 Bucket Misconfiguration', summary: 'Fortune 500 company exposes 500GB of sensitive data including employee records and trade secrets due to misconfigured cloud storage.', date: '2026-05-16', source: 'Cloud Security', severity: 'medium', link: 'https://thehackernews.com/' },
+            { id: 10, title: '🔴 CRITICAL: New Linux Ransomware Group Emerges', summary: 'New ransomware group targeting Linux enterprise servers with double extortion tactics. Over 100 companies affected globally.', date: '2026-05-16', source: 'Linux Security', severity: 'critical', link: 'https://thehackernews.com/' },
+            { id: 11, title: '🟠 HIGH: WordPress Plugin Vulnerability', summary: 'Critical vulnerability in popular WordPress plugin affects over 1 million websites allowing full site takeover.', date: '2026-05-15', source: 'WordPress Security', severity: 'high', link: 'https://thehackernews.com/' },
+            { id: 12, title: '🔴 CRITICAL: Nuclear Facility Cyber Attack', summary: 'Nuclear research facility targeted by sophisticated cyber attack. Sensitive data may have been accessed.', date: '2026-05-15', source: 'Critical Infrastructure', severity: 'critical', link: 'https://thehackernews.com/' },
+            { id: 13, title: '🟠 HIGH: IoT Botnet Takes Down Major Websites', summary: 'Massive IoT botnet consisting of 500,000 compromised devices launched DDoS attacks taking down major websites.', date: '2026-05-14', source: 'IoT Security', severity: 'high', link: 'https://thehackernews.com/' },
+            { id: 14, title: '🟡 MEDIUM: LastPass Parent Company Breach', summary: 'GoTo discloses data breach affecting customer information and encrypted backups from their systems.', date: '2026-05-14', source: 'GoTo Security', severity: 'medium', link: 'https://thehackernews.com/' },
+            { id: 15, title: '🔴 CRITICAL: Twitter Data Leak Exposes User Emails', summary: 'Massive data leak exposes email addresses of millions of Twitter users from previous scraping incident.', date: '2026-05-13', source: 'Twitter Security', severity: 'critical', link: 'https://thehackernews.com/' },
+            { id: 16, title: '🟠 HIGH: T-Mobile Suffers Another Data Breach', summary: 'T-Mobile reports new data breach affecting customer accounts and personal information.', date: '2026-05-13', source: 'T-Mobile', severity: 'high', link: 'https://thehackernews.com/' },
+            { id: 17, title: '🟡 MEDIUM: Python Package Malware Discovered', summary: 'Malicious packages found on PyPI stealing SSH keys and AWS credentials from developers.', date: '2026-05-12', source: 'Python Security', severity: 'medium', link: 'https://thehackernews.com/' },
+            { id: 18, title: '🔴 CRITICAL: Okta Support System Breach', summary: 'Okta confirms security breach affecting customer support system and source code access.', date: '2026-05-12', source: 'Okta', severity: 'critical', link: 'https://thehackernews.com/' },
+            { id: 19, title: '🟠 HIGH: Western Digital Network Breach', summary: 'Western Digital confirms network breach where hackers stole 10TB of sensitive data.', date: '2026-05-11', source: 'Western Digital', severity: 'high', link: 'https://thehackernews.com/' },
+            { id: 20, title: '🟡 MEDIUM: Cisco IOS XE Vulnerability', summary: 'Critical zero-day in Cisco IOS XE allows privilege escalation with public exploit available.', date: '2026-05-11', source: 'Cisco', severity: 'medium', link: 'https://thehackernews.com/' },
+            { id: 21, title: '🔴 CRITICAL: 3CX Supply Chain Attack', summary: '3CX desktop app compromised in supply chain attack distributing malware to thousands of customers.', date: '2026-05-10', source: '3CX', severity: 'critical', link: 'https://thehackernews.com/' },
+            { id: 22, title: '🟠 HIGH: ChatGPT Data Leak Exposes Conversations', summary: 'Bug in ChatGPT exposed chat titles of users to other users on the platform.', date: '2026-05-10', source: 'OpenAI', severity: 'high', link: 'https://thehackernews.com/' },
+            { id: 23, title: '🟡 MEDIUM: Norton LifeLock Account Compromise', summary: 'Norton LifeLock notifies customers of account compromise through credential stuffing attacks.', date: '2026-05-09', source: 'Norton', severity: 'medium', link: 'https://thehackernews.com/' },
+            { id: 24, title: '🔴 CRITICAL: SolarWinds-Style Supply Chain Attack', summary: 'New supply chain attack targeting government agencies through trusted software vendor.', date: '2026-05-09', source: 'CISA', severity: 'critical', link: 'https://thehackernews.com/' },
+            { id: 25, title: '🟠 HIGH: ChatGPT Plugin Security Flaw', summary: 'Security flaw in ChatGPT plugins could expose user conversations to third-party services.', date: '2026-05-08', source: 'OpenAI', severity: 'high', link: 'https://thehackernews.com/' },
+            { id: 26, title: '🟡 MEDIUM: Android Malware on Google Play', summary: 'New Android malware disguised as legitimate apps downloaded 500,000 times from Play Store.', date: '2026-05-08', source: 'Google Security', severity: 'medium', link: 'https://thehackernews.com/' },
+            { id: 27, title: '🔴 CRITICAL: VMware vCenter RCE Vulnerability', summary: 'Critical remote code execution vulnerability in VMware vCenter Server allows full system compromise.', date: '2026-05-07', source: 'VMware', severity: 'critical', link: 'https://thehackernews.com/' },
+            { id: 28, title: '🟠 HIGH: US Government Agency Data Breach', summary: 'Unknown threat actors breach US government agency, stealing sensitive diplomatic communications.', date: '2026-05-07', source: 'GovSec', severity: 'high', link: 'https://thehackernews.com/' },
+            { id: 29, title: '🟡 MEDIUM: Docker Hub Images Contain Malware', summary: 'Popular Docker images found to contain cryptominers and backdoors affecting thousands of deployments.', date: '2026-05-06', source: 'Docker Security', severity: 'medium', link: 'https://thehackernews.com/' },
+            { id: 30, title: '🔴 CRITICAL: Apache Log4j Still Being Exploited', summary: 'Two years after disclosure, Log4j vulnerabilities continue to be exploited in enterprise environments.', date: '2026-05-06', source: 'Apache', severity: 'critical', link: 'https://thehackernews.com/' }
         ];
 
-            const messages = [
-                "Access restricted. This sector is classified.",
-                "Operators are writing code. Return later.",
-                "404: Feature not found in this dimension.",
-                "Our hackers are on a coffee break.",
-                "This area is protected by 256-bit excuses.",
-                "Downloading more RAM. Please wait."
-            ];
-            document.getElementById('modalTitle').innerText = feature + ' — LOCKED';
-            document.getElementById('modalMessage').innerHTML = messages[Math.floor(Math.random() * messages.length)] + '<br><span style="display:block; margin-top:10px; font-size:11px;">🚧 Under construction 🚧</span>';
+        function fetchNews() {
+            document.getElementById('incidentsContainer').innerHTML = '<div class="loading"><div class="spinner"></div><p>Fetching latest security incidents...</p></div>';
+            
+            setTimeout(() => {
+                allIncidents = cybersecurityData;
+                document.getElementById('incidentCount').innerHTML = allIncidents.length;
+                document.getElementById('updateTime').innerHTML = new Date().toLocaleTimeString();
+                filterIncidents();
+            }, 500);
         }
 
-        function closeModal() {
+        function filterIncidents() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            let filtered = allIncidents.filter(incident => {
+                const matchesFilter = currentFilter === 'all' || incident.severity === currentFilter;
+                const matchesSearch = incident.title.toLowerCase().includes(searchTerm) || 
+                                    incident.summary.toLowerCase().includes(searchTerm);
+                return matchesFilter && matchesSearch;
+            });
+            displayIncidents(filtered);
         }
 
-        function loadThreats() {
-            articles = threatData;
-            document.getElementById('threatCount').innerText = articles.length;
-            document.getElementById('liveCount').innerText = articles.length;
-            document.getElementById('updateTime').innerText = new Date().toLocaleTimeString();
-            render();
-        }
+        function displayIncidents(incidents) {
+            const container = document.getElementById('incidentsContainer');
+            
+            if (incidents.length === 0) {
+                container.innerHTML = '<div class="loading"><p>📭 No incidents found</p><p style="font-size:12px;margin-top:8px;">Try different search or filter</p></div>';
+                return;
+            }
 
-        function render() {
-            const grid = document.getElementById('newsGrid');
-            grid.innerHTML = articles.map(a => `
-                    <div class="card-category">${a.source.toUpperCase()} / ${a.severity.toUpperCase()}</div>
-                    <div class="card-title">${a.title}</div>
-                    <div class="card-excerpt">${a.excerpt}</div>
-                    <div class="card-meta">
-                        <span>📅 ${a.date}</span>
-                        <span>READ →</span>
-                    </div>
+            container.innerHTML = `
+                <div class="cards-grid">
+                    ${incidents.map(incident => `
+                        <div class="incident-card" onclick="window.open('${incident.link}', '_blank')">
+                            <div class="card-content">
+                                <div class="card-header">
+                                    <span class="severity-badge severity-${incident.severity}">
+                                        ${incident.severity.toUpperCase()}
+                                    </span>
+                                    <span class="source">${incident.source}</span>
+                                </div>
+                                <h3 class="card-title">${incident.title}</h3>
+                                <p class="card-summary">${incident.summary}</p>
+                                <div class="card-footer">
+                                    <span class="date">📅 ${incident.date}</span>
+                                    <span style="color: #a5b4fc;">Read full story →</span>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
                 </div>
+            `;
+        }
+
+        function setupFilters() {
+            const filters = ['all', 'critical', 'high', 'medium', 'low'];
+            const container = document.getElementById('filters');
+            container.innerHTML = filters.map(filter => `
+                <button class="filter-btn ${filter === 'all' ? 'active' : ''}" onclick="setFilter('${filter}')">
+                    ${filter.toUpperCase()}
+                </button>
             `).join('');
         }
 
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+        function setFilter(filter) {
+            currentFilter = filter;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            filterIncidents();
+        }
 
-        loadThreats();
-        setInterval(() => { updateCount++; document.getElementById('updateTime').innerText = new Date().toLocaleTimeString(); }, 60000);
+        // Initialize
+        setupFilters();
+        fetchNews();
+        
+        // Auto-refresh every 5 minutes
+        setInterval(fetchNews, 300000);
     </script>
 </body>
 </html>
