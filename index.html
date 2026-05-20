@@ -430,11 +430,6 @@
 
         <div class="nav">
             <div class="nav-links">
-                <a onclick="showWIP('Threat Intelligence')">INTEL</a>
-                <a onclick="showWIP('Breach Database')">BREACHES</a>
-                <a onclick="showWIP('Vulnerability Feed')">VULNS</a>
-                <a onclick="showWIP('APT Tracking')">APT</a>
-                <a onclick="showWIP('Dark Web')">DARK WEB</a>
             </div>
         </div>
 
@@ -486,25 +481,16 @@
                 <div class="footer-col">
                     <h4>INTEL</h4>
                     <ul>
-                        <li><a onclick="showWIP('Daily Briefing')">Daily Briefing</a></li>
-                        <li><a onclick="showWIP('Threat Reports')">Threat Reports</a></li>
-                        <li><a onclick="showWIP('Zero-Day Tracker')">Zero-Day Tracker</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>RESOURCES</h4>
                     <ul>
-                        <li><a onclick="showWIP('API Access')">API Access</a></li>
-                        <li><a onclick="showWIP('Documentation')">Documentation</a></li>
-                        <li><a onclick="showWIP('Contact')">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>LEGAL</h4>
                     <ul>
-                        <li><a onclick="showWIP('Terms')">Terms</a></li>
-                        <li><a onclick="showWIP('Privacy')">Privacy</a></li>
-                        <li><a onclick="showWIP('Disclaimer')">Disclaimer</a></li>
                     </ul>
                 </div>
             </div>
@@ -515,7 +501,6 @@
     </div>
 
     <!-- Modal -->
-    <div id="wipModal" class="modal">
         <div class="modal-content">
             <div class="modal-icon"><i class="fas fa-terminal"></i></div>
             <h2 id="modalTitle">Access Denied</h2>
@@ -767,7 +752,6 @@ setInterval(() => {
             { title: 'SCADA Vulnerability in Power Grid', excerpt: 'Critical infrastructure at risk. Patch available.', source: 'ICS-CERT', severity: 'critical', date: '2026-05-18' }
         ];
 
-        function showWIP(feature) {
             const messages = [
                 "Access restricted. This sector is classified.",
                 "Operators are writing code. Return later.",
@@ -778,11 +762,9 @@ setInterval(() => {
             ];
             document.getElementById('modalTitle').innerText = feature + ' — LOCKED';
             document.getElementById('modalMessage').innerHTML = messages[Math.floor(Math.random() * messages.length)] + '<br><span style="display:block; margin-top:10px; font-size:11px;">🚧 Under construction 🚧</span>';
-            document.getElementById('wipModal').style.display = 'flex';
         }
 
         function closeModal() {
-            document.getElementById('wipModal').style.display = 'none';
         }
 
         function loadThreats() {
@@ -796,7 +778,6 @@ setInterval(() => {
         function render() {
             const grid = document.getElementById('newsGrid');
             grid.innerHTML = articles.map(a => `
-                <div class="news-card" onclick="showWIP('${a.title}')">
                     <div class="card-category">${a.source.toUpperCase()} / ${a.severity.toUpperCase()}</div>
                     <div class="card-title">${a.title}</div>
                     <div class="card-excerpt">${a.excerpt}</div>
