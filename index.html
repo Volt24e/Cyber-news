@@ -525,6 +525,150 @@
     </div>
 
     <script>
+// Override the display function to show ALL articles
+function displayAllIncidents(incidents) {
+    const container = document.getElementById('incidentsContainer');
+    if (!container) return;
+    
+    if (!incidents || incidents.length === 0) {
+        container.innerHTML = '<div class="loading"><p>No incidents found</p></div>';
+        return;
+    }
+    
+    // Show ALL incidents, not just first few
+    container.innerHTML = `<div class="cards-grid">${incidents.map(incident => `
+        <div class="incident-card" onclick="window.open('${incident.link || '#'}', '_blank')">
+            <div class="card-content">
+                <div class="card-header">
+                    <span class="severity-badge severity-${incident.severity}">
+                        ${incident.severity ? incident.severity.toUpperCase() : 'MEDIUM'}
+                    </span>
+                    <span class="source">${incident.source || 'Security Feed'}</span>
+                </div>
+                <h3 class="card-title">${incident.title || 'Security Incident'}</h3>
+                <p class="card-summary">${(incident.summary || 'Click to read more').substring(0, 150)}...</p>
+                <div class="card-footer">
+                    <span class="date">📅 ${incident.date || new Date().toLocaleDateString()}</span>
+                    <span>READ →</span>
+                </div>
+            </div>
+        </div>
+    `).join('')}</div>`;
+    
+    // Update the count display
+    document.getElementById('incidentCount').innerHTML = incidents.length;
+    document.getElementById('liveCount').innerHTML = incidents.length;
+}
+
+// Override the filter function to show everything
+const originalFilter = window.filterIncidents;
+window.filterIncidents = function() {
+    const searchTerm = document.getElementById('searchInput')?.value.toLowerCase() || '';
+    let filtered = window.allIncidents || [];
+    
+    if (searchTerm) {
+        filtered = filtered.filter(incident => 
+            (incident.title || '').toLowerCase().includes(searchTerm) || 
+            (incident.summary || '').toLowerCase().includes(searchTerm)
+        );
+    }
+    
+    if (currentFilter && currentFilter !== 'all') {
+        filtered = filtered.filter(incident => incident.severity === currentFilter);
+    }
+    
+    displayAllIncidents(filtered);
+};
+
+// Fetch more news from additional sources
+async function fetchMoreNews() {
+    const moreSources = [
+        'https://api.rss2json.com/v1/api.json?rss_url=https://www.schneier.com/feed/atom/',
+        'https://api.rss2json.com/v1/api.json?rss_url=https://www.wired.com/category/security/feed/',
+        'https://api.rss2json.com/v1/api.json?rss_url=https://krebsonsecurity.com/feed/',
+        'https://api.rss2json.com/v1/api.json?rss_url=https://www.cyberscoop.com/feed/'
+    ];
+    
+    let extraArticles = [];
+    for (let url of moreSources) {
+        try {
+            let response = await fetch(url);
+            let data = await response.json();
+            if (data.items) {
+                for (let item of data.items.slice(0, 5)) {
+                    extraArticles.push({
+                        title: item.title,
+                        summary: (item.description || '').replace(/<[^>]*>/g, '').substring(0, 180),
+                        date: new Date(item.pubDate).toLocaleDateString(),
+                        source: data.feed?.title || 'Security News',
+                        link: item.link,
+                        severity: getSeverityFromTitle(item.title)
+                    });
+                }
+            }
+        } catch(e) {}
+    }
+    return extraArticles;
+}
+
+// Enhanced fetch function
+const superFetch = async function() {
+    const container = document.getElementById('incidentsContainer');
+    if (container) {
+        container.innerHTML = '<div class="loading"><div class="spinner"></div><p>Loading from 10+ security sources...</p></div>';
+    }
+    
+    try {
+        // Get main news
+        let mainNews = await fetchLiveNews();
+        
+        // Get extra news
+        let extraNews = await fetchMoreNews();
+        
+        // Combine all
+        let allNews = [...mainNews, ...extraNews];
+        
+        // Remove duplicates
+        let unique = [];
+        let seen = new Set();
+        for (let news of allNews) {
+            if (!seen.has(news.title)) {
+                seen.add(news.title);
+                unique.push(news);
+            }
+        }
+        
+        // Sort by date (newest first)
+        unique.sort((a, b) => new Date(b.date) - new Date(a.date));
+        
+        window.allIncidents = unique;
+        document.getElementById('incidentCount').innerHTML = unique.length;
+        document.getElementById('liveCount').innerHTML = unique.length;
+        document.getElementById('updateTime').innerHTML = new Date().toLocaleTimeString();
+        
+        displayAllIncidents(unique);
+        
+        console.log(`Loaded ${unique.length} cybersecurity news articles`);
+    } catch(e) {
+        console.log('Error:', e);
+    }
+};
+
+// Replace the original fetch function
+window.fetchNews = superFetch;
+
+// Auto-refresh every 3 minutes
+if (window.refreshInterval) clearInterval(window.refreshInterval);
+window.refreshInterval = setInterval(() => {
+    if (window.fetchNews) window.fetchNews();
+}, 180000);
+
+// Run immediately
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => superFetch());
+} else {
+    superFetch();
+}
 // Real news fetching function - keeps your exact design
 async function fetchLiveNews() {
     const sources = [
