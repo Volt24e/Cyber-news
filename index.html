@@ -17,6 +17,8 @@
             position: relative;
             overflow-x: hidden;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         body::before {
             content: '';
@@ -84,7 +86,7 @@
             background: linear-gradient(90deg, #a855f7, #3b82f6); transition: width 0.3s ease;
         }
         nav a:hover::before { width: 100%; }
-        main { position: relative; z-index: 5; max-width: 1600px; margin: 2rem auto; padding: 0 2rem; }
+        main { position: relative; z-index: 5; max-width: 1600px; margin: 2rem auto; padding: 0 2rem; width: 100%; flex: 1; }
         .hero {
             text-align: center; margin-bottom: 3rem; padding: 2rem;
             background: linear-gradient(135deg, rgba(168, 85, 247, 0.05), rgba(59, 130, 246, 0.05));
@@ -127,10 +129,10 @@
             backdrop-filter: blur(15px); transition: all 0.3s ease; display: flex; align-items: center; gap: 1.2rem;
         }
         .stat-card:hover { background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(59, 130, 246, 0.1)); border-color: rgba(168, 85, 247, 0.4); transform: translateY(-4px); box-shadow: 0 12px 30px rgba(168, 85, 247, 0.2); }
-        .stat-icon { font-size: 2rem; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #a855f7, #3b82f6); border-radius: 12px; color: #fff; }
+        .stat-icon { font-size: 2rem; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #a855f7, #3b82f6); border-radius: 12px; color: #fff; flex-shrink: 0; }
         .stat-content h3 { font-size: 0.85rem; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem; }
         .stat-content p { font-size: 1.8rem; font-weight: 700; background: linear-gradient(135deg, #a855f7, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .loading { text-align: center; padding: 4rem 2rem; color: #a855f7; }
+        .loading { text-align: center; padding: 4rem 2rem; color: #a855f7; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; }
         .spinner { border: 4px solid rgba(168, 85, 247, 0.2); border-top: 4px solid #a855f7; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 0 auto 1.5rem; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
@@ -145,7 +147,7 @@
         .article-card:hover::before { opacity: 1; }
         .article-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
         .article-title { font-size: 1.15rem; font-weight: 700; color: #ffffff; line-height: 1.4; flex: 1; font-family: 'Inter', sans-serif; }
-        .severity-badge { padding: 0.4rem 0.9rem; border-radius: 8px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; white-space: nowrap; letter-spacing: 1px; backdrop-filter: blur(10px); font-family: 'Orbitron', sans-serif; }
+        .severity-badge { padding: 0.4rem 0.9rem; border-radius: 8px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; white-space: nowrap; letter-spacing: 1px; backdrop-filter: blur(10px); font-family: 'Orbitron', sans-serif; flex-shrink: 0; }
         .severity-critical { background: linear-gradient(135deg, rgba(239, 68, 68, 0.3), rgba(220, 38, 38, 0.2)); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.4); }
         .severity-high { background: linear-gradient(135deg, rgba(249, 115, 22, 0.3), rgba(234, 88, 12, 0.2)); color: #fdba74; border: 1px solid rgba(249, 115, 22, 0.4); }
         .severity-medium { background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(147, 51, 234, 0.2)); color: #d8b4fe; border: 1px solid rgba(168, 85, 247, 0.4); }
@@ -157,8 +159,8 @@
         .no-articles { grid-column: 1 / -1; text-align: center; padding: 5rem 2rem; color: #6b7280; }
         .no-articles i { font-size: 4rem; margin-bottom: 1.5rem; opacity: 0.4; background: linear-gradient(135deg, #a855f7, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .no-articles h3 { color: #e0e0e0; margin-bottom: 0.5rem; font-size: 1.3rem; }
-        footer { position: relative; z-index: 10; border-top: 1px solid rgba(168, 85, 247, 0.15); backdrop-filter: blur(20px); background: linear-gradient(180deg, rgba(20, 20, 40, 0.6), rgba(10, 14, 39, 0.8)); padding: 3rem 0 1.5rem; margin-top: 5rem; }
-        .footer-content { max-width: 1600px; margin: 0 auto; padding: 0 2rem; }
+        footer { position: relative; z-index: 10; border-top: 1px solid rgba(168, 85, 247, 0.15); backdrop-filter: blur(20px); background: linear-gradient(180deg, rgba(20, 20, 40, 0.6), rgba(10, 14, 39, 0.8)); padding: 3rem 0 1.5rem; margin-top: auto; }
+        .footer-content { max-width: 1600px; margin: 0 auto; padding: 0 2rem; width: 100%; }
         .footer-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
         .footer-column h4 { font-size: 0.9rem; color: #a855f7; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; font-family: 'Orbitron', sans-serif; }
         .footer-column a { display: block; color: #9ca3af; text-decoration: none; font-size: 0.9rem; margin-bottom: 0.6rem; cursor: pointer; transition: all 0.3s ease; font-weight: 500; }
@@ -316,12 +318,12 @@
         ];
 
         const feeds = [
-            { url: 'https://thehackernews.com/feeds/posts/default',      name: 'The Hacker News' },
-            { url: 'https://www.bleepingcomputer.com/feed/',              name: 'BleepingComputer' },
-            { url: 'https://securityaffairs.com/feed/',                   name: 'Security Affairs' },
-            { url: 'https://feeds.krebsonsecurity.com/krebsonsecurity',   name: 'Krebs on Security' },
-            { url: 'https://www.darkreading.com/rss/index.xml',           name: 'Dark Reading' },
-            { url: 'https://packetstormsecurity.com/files/rss/files.xml', name: 'Packet Storm' }
+            'https://thehackernews.com/feeds/posts/default',
+            'https://www.bleepingcomputer.com/feed/',
+            'https://securityaffairs.com/feed/',
+            'https://feeds.krebsonsecurity.com/krebsonsecurity',
+            'https://www.darkreading.com/rss/index.xml',
+            'https://packetstormsecurity.com/files/rss/files.xml'
         ];
 
         let allArticles = [];
@@ -366,42 +368,27 @@
             });
         }
 
-        async function fetchRSSFeed(feed) {
+        async function fetchRSSFeed(feedUrl) {
             try {
-                const proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(feed.url);
-                const response = await fetch(proxyUrl);
+                const proxyUrl = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(feedUrl);
+                const response = await fetch(proxyUrl, {
+                    headers: { 'Cache-Control': 'no-cache' }
+                });
                 if (!response.ok) throw new Error('HTTP ' + response.status);
 
-                const json = await response.json();
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(json.contents, 'text/xml');
+                const data = await response.json();
+                if (!data.items || !data.items.length) return [];
 
-                const items = [...doc.querySelectorAll('item, entry')];
-
-                return items.slice(0, 25).map(el => {
-                    const title = el.querySelector('title')?.textContent?.trim() || 'Untitled';
-                    const rawDesc = el.querySelector('description')?.textContent ||
-                                    el.querySelector('summary')?.textContent ||
-                                    el.querySelector('content')?.textContent || '';
-                    const summary = stripHtml(rawDesc);
-                    const linkEl = el.querySelector('link');
-                    const link = (linkEl?.getAttribute('href') || linkEl?.textContent || '#').trim();
-                    const pubRaw = el.querySelector('pubDate')?.textContent ||
-                                   el.querySelector('published')?.textContent ||
-                                   el.querySelector('updated')?.textContent || '';
-                    const date = pubRaw ? new Date(pubRaw) : new Date();
-
-                    return {
-                        title,
-                        summary,
-                        link,
-                        source: feed.name,
-                        date,
-                        severity: determineSeverity(title + ' ' + summary)
-                    };
-                });
+                return data.items.slice(0, 30).map(item => ({
+                    title: item.title || 'Untitled',
+                    summary: stripHtml(item.description || item.content || ''),
+                    link: item.link || '#',
+                    source: data.feed.title || 'Security',
+                    date: new Date(item.pubDate || Date.now()),
+                    severity: determineSeverity(item.title + ' ' + (item.description || ''))
+                }));
             } catch (err) {
-                console.warn('Feed failed (' + feed.name + '):', err.message);
+                console.warn('Feed error:', feedUrl, err);
                 return [];
             }
         }
@@ -413,10 +400,13 @@
                 const articles = [];
 
                 results.forEach(r => {
-                    if (r.status === 'fulfilled') {
+                    if (r.status === 'fulfilled' && r.value) {
                         r.value.forEach(a => {
                             const key = a.title.toLowerCase().trim();
-                            if (!seen.has(key)) { seen.add(key); articles.push(a); }
+                            if (!seen.has(key)) { 
+                                seen.add(key); 
+                                articles.push(a); 
+                            }
                         });
                     }
                 });
@@ -431,7 +421,7 @@
                 updateStats();
                 filterAndDisplayArticles();
             } catch (err) {
-                console.error('fetchAllNews error:', err);
+                console.error('Fetch error:', err);
                 displayError();
             }
         }
@@ -439,13 +429,13 @@
         function stripHtml(html) {
             const div = document.createElement('div');
             div.innerHTML = html;
-            return (div.textContent || div.innerText || '').trim();
+            return (div.textContent || div.innerText || '').trim().substring(0, 200);
         }
 
         function determineSeverity(text) {
             const t = text.toLowerCase();
-            if (/critical|zero.?day|ransomware|worm|botnet|rce|remote code|actively exploit/.test(t)) return 'critical';
-            if (/high|severe|major|urgent|patch|exploit|attack|threat|vulnerability|malware|breach/.test(t)) return 'high';
+            if (/critical|zero.day|ransomware|worm|botnet|rce|remote code|actively exploit|0day/.test(t)) return 'critical';
+            if (/high|severe|major|urgent|patch|exploit|attack|threat|vulnerability|malware|breach|security alert/.test(t)) return 'high';
             if (/medium|moderate|issue|bug|security|update|warning/.test(t)) return 'medium';
             return 'low';
         }
@@ -538,7 +528,7 @@
                 <div class="no-articles">
                     <i class="fas fa-exclamation-triangle"></i>
                     <h3>Connection Error</h3>
-                    <p>Unable to fetch security intelligence. Retrying...</p>
+                    <p>Unable to fetch security intelligence.</p>
                 </div>`;
         }
 
