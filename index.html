@@ -9,145 +9,53 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 50%, #0f0f1e 100%);
-            color: #d4d4d8;
-            line-height: 1.6;
-            position: relative;
-            overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        body::before {
-            content: '';
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0; left: 0;
-            background:
-                radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 50% 0%, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 1;
-            animation: shift 15s ease-in-out infinite;
-        }
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 50%, #0f0f1e 100%); color: #d4d4d8; line-height: 1.6; position: relative; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; }
+        body::before { content: ''; position: fixed; width: 100%; height: 100%; top: 0; left: 0; background: radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.08) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.08) 0%, transparent 50%), radial-gradient(circle at 50% 0%, rgba(236, 72, 153, 0.05) 0%, transparent 50%); pointer-events: none; z-index: 1; animation: shift 15s ease-in-out infinite; }
         @keyframes shift { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; } }
         .particles { position: fixed; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-        .particle {
-            position: absolute;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.8), rgba(168, 85, 247, 0));
-            border-radius: 50%;
-            animation: float 20s infinite ease-in-out;
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
-            10% { opacity: 0.7; }
-            90% { opacity: 0.7; }
-            100% { transform: translateY(-100vh) translateX(100px) scale(0.5); opacity: 0; }
-        }
-        header {
-            position: relative; z-index: 10;
-            padding: 1.5rem 0;
-            border-bottom: 1px solid rgba(168, 85, 247, 0.15);
-            backdrop-filter: blur(20px);
-            background: linear-gradient(180deg, rgba(10, 14, 39, 0.8), rgba(20, 20, 40, 0.6));
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-        .header-content {
-            max-width: 1600px; margin: 0 auto; padding: 0 2rem;
-            display: flex; justify-content: space-between; align-items: center; gap: 2rem;
-        }
-        .logo {
-            display: flex; align-items: center; gap: 0.8rem;
-            font-size: 1.6rem; font-weight: 900; color: #fff;
-            text-decoration: none; letter-spacing: 3px; text-transform: uppercase;
-            font-family: 'Orbitron', sans-serif;
-            background: linear-gradient(135deg, #a855f7, #3b82f6, #06b6d4);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
+        .particle { position: absolute; background: radial-gradient(circle, rgba(168, 85, 247, 0.8), rgba(168, 85, 247, 0)); border-radius: 50%; animation: float 20s infinite ease-in-out; }
+        @keyframes float { 0%, 100% { transform: translateY(0) translateX(0) scale(1); opacity: 0; } 10% { opacity: 0.7; } 90% { opacity: 0.7; } 100% { transform: translateY(-100vh) translateX(100px) scale(0.5); opacity: 0; } }
+        header { position: relative; z-index: 10; padding: 1.5rem 0; border-bottom: 1px solid rgba(168, 85, 247, 0.15); backdrop-filter: blur(20px); background: linear-gradient(180deg, rgba(10, 14, 39, 0.8), rgba(20, 20, 40, 0.6)); }
+        .header-content { max-width: 1600px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
+        .logo { display: flex; align-items: center; gap: 0.8rem; font-size: 1.6rem; font-weight: 900; text-decoration: none; letter-spacing: 3px; text-transform: uppercase; font-family: 'Orbitron', sans-serif; background: linear-gradient(135deg, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .logo i { font-size: 2rem; animation: pulse-glow 3s ease-in-out infinite; color: #a855f7; -webkit-text-fill-color: #a855f7; }
-        @keyframes pulse-glow {
-            0%, 100% { filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.4)); transform: scale(1); }
-            50% { filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.8)); transform: scale(1.1); }
-        }
+        @keyframes pulse-glow { 0%, 100% { filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.4)); transform: scale(1); } 50% { filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.8)); transform: scale(1.1); } }
         nav { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-        nav a {
-            color: #a0a0b0; text-decoration: none; font-size: 0.85rem; font-weight: 600;
-            cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative; text-transform: uppercase; letter-spacing: 1.5px; font-family: 'Orbitron', sans-serif;
-        }
+        nav a { color: #a0a0b0; text-decoration: none; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; position: relative; text-transform: uppercase; letter-spacing: 1.5px; font-family: 'Orbitron', sans-serif; }
         nav a:hover { color: #a855f7; }
-        nav a::before {
-            content: ''; position: absolute; bottom: -6px; left: 0;
-            width: 0; height: 2px;
-            background: linear-gradient(90deg, #a855f7, #3b82f6); transition: width 0.3s ease;
-        }
+        nav a::before { content: ''; position: absolute; bottom: -6px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #a855f7, #3b82f6); transition: width 0.3s ease; }
         nav a:hover::before { width: 100%; }
         main { position: relative; z-index: 5; max-width: 1600px; margin: 2rem auto; padding: 0 2rem; width: 100%; flex: 1; }
-        .hero {
-            text-align: center; margin-bottom: 3rem; padding: 2rem;
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.05), rgba(59, 130, 246, 0.05));
-            border: 1px solid rgba(168, 85, 247, 0.1); border-radius: 16px; backdrop-filter: blur(10px);
-        }
-        .hero h1 {
-            font-size: 2.5rem; font-family: 'Orbitron', sans-serif; margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, #a855f7, #3b82f6, #06b6d4);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: 2px;
-        }
+        .hero { text-align: center; margin-bottom: 3rem; padding: 2rem; background: linear-gradient(135deg, rgba(168, 85, 247, 0.05), rgba(59, 130, 246, 0.05)); border: 1px solid rgba(168, 85, 247, 0.1); border-radius: 16px; backdrop-filter: blur(10px); }
+        .hero h1 { font-size: 2.5rem; font-family: 'Orbitron', sans-serif; margin-bottom: 0.5rem; background: linear-gradient(135deg, #a855f7, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: 2px; }
         .hero p { font-size: 1.1rem; color: #9ca3af; font-weight: 300; }
-        .search-filter-section { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem; align-items: end; }
+        .controls { display: flex; flex-direction: column; gap: 2rem; margin-bottom: 2rem; }
         .search-box { position: relative; }
-        .search-box input {
-            width: 100%; padding: 1.1rem 1.5rem 1.1rem 3.5rem;
-            background: rgba(20, 20, 40, 0.8); border: 1px solid rgba(168, 85, 247, 0.3);
-            border-radius: 12px; color: #e0e0e0; font-size: 1rem;
-            backdrop-filter: blur(15px); transition: all 0.3s ease; font-family: 'Inter', sans-serif;
-        }
+        .search-box input { width: 100%; padding: 1.1rem 1.5rem 1.1rem 3.5rem; background: rgba(20, 20, 40, 0.8); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 12px; color: #e0e0e0; font-size: 1rem; backdrop-filter: blur(15px); transition: all 0.3s ease; }
         .search-box input::placeholder { color: #6b7280; }
-        .search-box input:focus {
-            outline: none; background: rgba(20, 20, 40, 0.95); border-color: #a855f7;
-            box-shadow: 0 0 30px rgba(168, 85, 247, 0.4), inset 0 0 30px rgba(168, 85, 247, 0.1);
-        }
+        .search-box input:focus { outline: none; background: rgba(20, 20, 40, 0.95); border-color: #a855f7; box-shadow: 0 0 30px rgba(168, 85, 247, 0.4), inset 0 0 30px rgba(168, 85, 247, 0.1); }
         .search-box i { position: absolute; left: 1.3rem; top: 50%; transform: translateY(-50%); color: #a855f7; font-size: 1.2rem; }
-        .filter-buttons { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: flex-end; }
-        .severity-btn {
-            padding: 0.8rem 1.6rem; background: rgba(30, 30, 55, 0.9);
-            border: 1.5px solid rgba(168, 85, 247, 0.2); color: #b0b0c0;
-            border-radius: 10px; cursor: pointer; font-weight: 600;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; font-family: 'Inter', sans-serif;
-        }
+        .filter-buttons { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; }
+        .severity-btn { padding: 0.8rem 1.6rem; background: rgba(30, 30, 55, 0.9); border: 1.5px solid rgba(168, 85, 247, 0.2); color: #b0b0c0; border-radius: 10px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
         .severity-btn:hover { background: rgba(40, 35, 65, 0.9); border-color: #a855f7; color: #a855f7; transform: translateY(-2px); box-shadow: 0 8px 16px rgba(168, 85, 247, 0.2); }
         .severity-btn.active { background: linear-gradient(135deg, #a855f7, #7c3aed); color: #fff; border-color: #a855f7; box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4); }
         .stats-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
-        .stat-card {
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(59, 130, 246, 0.05));
-            border: 1px solid rgba(168, 85, 247, 0.2); border-radius: 14px; padding: 1.5rem;
-            backdrop-filter: blur(15px); transition: all 0.3s ease; display: flex; align-items: center; gap: 1.2rem;
-        }
+        .stat-card { background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(59, 130, 246, 0.05)); border: 1px solid rgba(168, 85, 247, 0.2); border-radius: 14px; padding: 1.5rem; backdrop-filter: blur(15px); transition: all 0.3s ease; display: flex; align-items: center; gap: 1.2rem; }
         .stat-card:hover { background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(59, 130, 246, 0.1)); border-color: rgba(168, 85, 247, 0.4); transform: translateY(-4px); box-shadow: 0 12px 30px rgba(168, 85, 247, 0.2); }
         .stat-icon { font-size: 2rem; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #a855f7, #3b82f6); border-radius: 12px; color: #fff; flex-shrink: 0; }
         .stat-content h3 { font-size: 0.85rem; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem; }
         .stat-content p { font-size: 1.8rem; font-weight: 700; background: linear-gradient(135deg, #a855f7, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .loading { text-align: center; padding: 4rem 2rem; color: #a855f7; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; }
-        .spinner { border: 4px solid rgba(168, 85, 247, 0.2); border-top: 4px solid #a855f7; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 0 auto 1.5rem; }
+        .loading { display: flex; flex-direction: column; align-items: center; justify-content: center; grid-column: 1 / -1; padding: 4rem 2rem; color: #a855f7; }
+        .spinner { border: 4px solid rgba(168, 85, 247, 0.2); border-top: 4px solid #a855f7; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin-bottom: 1.5rem; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
-        .article-card {
-            background: linear-gradient(135deg, rgba(30, 30, 55, 0.8), rgba(20, 20, 40, 0.6));
-            border: 1px solid rgba(168, 85, 247, 0.15); border-radius: 16px; padding: 1.8rem;
-            backdrop-filter: blur(15px); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            cursor: pointer; display: flex; flex-direction: column; gap: 1.2rem; position: relative; overflow: hidden; height: 100%;
-        }
-        .article-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #a855f7, #3b82f6, #06b6d4, #a855f7); opacity: 0; transition: opacity 0.4s ease; }
-        .article-card:hover { background: linear-gradient(135deg, rgba(40, 35, 65, 0.9), rgba(30, 25, 50, 0.7)); border-color: rgba(168, 85, 247, 0.4); transform: translateY(-12px); box-shadow: 0 20px 50px rgba(168, 85, 247, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1); }
+        .article-card { background: linear-gradient(135deg, rgba(30, 30, 55, 0.8), rgba(20, 20, 40, 0.6)); border: 1px solid rgba(168, 85, 247, 0.15); border-radius: 16px; padding: 1.8rem; backdrop-filter: blur(15px); transition: all 0.4s ease; cursor: pointer; display: flex; flex-direction: column; gap: 1.2rem; position: relative; overflow: hidden; height: 100%; }
+        .article-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #a855f7, #3b82f6, #06b6d4); opacity: 0; transition: opacity 0.4s ease; }
+        .article-card:hover { background: linear-gradient(135deg, rgba(40, 35, 65, 0.9), rgba(30, 25, 50, 0.7)); border-color: rgba(168, 85, 247, 0.4); transform: translateY(-12px); box-shadow: 0 20px 50px rgba(168, 85, 247, 0.25); }
         .article-card:hover::before { opacity: 1; }
         .article-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
-        .article-title { font-size: 1.15rem; font-weight: 700; color: #ffffff; line-height: 1.4; flex: 1; font-family: 'Inter', sans-serif; }
-        .severity-badge { padding: 0.4rem 0.9rem; border-radius: 8px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; white-space: nowrap; letter-spacing: 1px; backdrop-filter: blur(10px); font-family: 'Orbitron', sans-serif; flex-shrink: 0; }
+        .article-title { font-size: 1.15rem; font-weight: 700; color: #ffffff; line-height: 1.4; flex: 1; }
+        .severity-badge { padding: 0.4rem 0.9rem; border-radius: 8px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; backdrop-filter: blur(10px); flex-shrink: 0; }
         .severity-critical { background: linear-gradient(135deg, rgba(239, 68, 68, 0.3), rgba(220, 38, 38, 0.2)); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.4); }
         .severity-high { background: linear-gradient(135deg, rgba(249, 115, 22, 0.3), rgba(234, 88, 12, 0.2)); color: #fdba74; border: 1px solid rgba(249, 115, 22, 0.4); }
         .severity-medium { background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(147, 51, 234, 0.2)); color: #d8b4fe; border: 1px solid rgba(168, 85, 247, 0.4); }
@@ -156,61 +64,34 @@
         .article-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: #9ca3af; border-top: 1px solid rgba(168, 85, 247, 0.1); padding-top: 1.2rem; }
         .article-source { display: flex; align-items: center; gap: 0.5rem; font-weight: 600; color: #a855f7; }
         .article-date { font-size: 0.8rem; color: #6b7280; }
-        .no-articles { grid-column: 1 / -1; text-align: center; padding: 5rem 2rem; color: #6b7280; }
+        .no-articles { grid-column: 1 / -1; text-align: center; padding: 5rem 2rem; }
         .no-articles i { font-size: 4rem; margin-bottom: 1.5rem; opacity: 0.4; background: linear-gradient(135deg, #a855f7, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .no-articles h3 { color: #e0e0e0; margin-bottom: 0.5rem; font-size: 1.3rem; }
         footer { position: relative; z-index: 10; border-top: 1px solid rgba(168, 85, 247, 0.15); backdrop-filter: blur(20px); background: linear-gradient(180deg, rgba(20, 20, 40, 0.6), rgba(10, 14, 39, 0.8)); padding: 3rem 0 1.5rem; margin-top: auto; }
-        .footer-content { max-width: 1600px; margin: 0 auto; padding: 0 2rem; width: 100%; }
+        .footer-content { max-width: 1600px; margin: 0 auto; padding: 0 2rem; }
         .footer-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
-        .footer-column h4 { font-size: 0.9rem; color: #a855f7; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; font-family: 'Orbitron', sans-serif; }
-        .footer-column a { display: block; color: #9ca3af; text-decoration: none; font-size: 0.9rem; margin-bottom: 0.6rem; cursor: pointer; transition: all 0.3s ease; font-weight: 500; }
+        .footer-column h4 { font-size: 0.9rem; color: #a855f7; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700; }
+        .footer-column a { display: block; color: #9ca3af; text-decoration: none; font-size: 0.9rem; margin-bottom: 0.6rem; cursor: pointer; transition: all 0.3s ease; }
         .footer-column a:hover { color: #a855f7; transform: translateX(4px); }
         .footer-bottom { border-top: 1px solid rgba(168, 85, 247, 0.1); padding-top: 1.5rem; text-align: center; color: #6b7280; font-size: 0.9rem; }
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
         .modal.active { display: flex; }
-        .modal-content { background: linear-gradient(135deg, rgba(20, 20, 40, 0.95), rgba(30, 20, 50, 0.95)); border: 1.5px solid rgba(168, 85, 247, 0.4); border-radius: 20px; padding: 2.5rem; max-width: 500px; width: 90%; text-align: center; backdrop-filter: blur(20px); box-shadow: 0 25px 60px rgba(168, 85, 247, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1); animation: slideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .modal-content { background: linear-gradient(135deg, rgba(20, 20, 40, 0.95), rgba(30, 20, 50, 0.95)); border: 1.5px solid rgba(168, 85, 247, 0.4); border-radius: 20px; padding: 2.5rem; max-width: 500px; width: 90%; text-align: center; backdrop-filter: blur(20px); box-shadow: 0 25px 60px rgba(168, 85, 247, 0.3); animation: slideIn 0.4s ease; }
         @keyframes slideIn { from { opacity: 0; transform: scale(0.8) translateY(-30px); } to { opacity: 1; transform: scale(1) translateY(0); } }
         .hacker-icon { font-size: 4.5rem; margin-bottom: 1.5rem; animation: hackerBounce 0.7s ease-in-out infinite; }
         @keyframes hackerBounce { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-15px) rotate(8deg); } }
-        .modal-text { color: #e0e0e0; font-size: 1.15rem; line-height: 1.7; margin-bottom: 2rem; font-weight: 500; }
-        .acknowledge-btn { padding: 1rem 2.8rem; background: linear-gradient(135deg, #a855f7, #7c3aed); color: #fff; border: none; border-radius: 10px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); text-transform: uppercase; letter-spacing: 2px; font-family: 'Orbitron', sans-serif; box-shadow: 0 10px 30px rgba(168, 85, 247, 0.3); }
+        .modal-text { color: #e0e0e0; font-size: 1.15rem; line-height: 1.7; margin-bottom: 2rem; }
+        .acknowledge-btn { padding: 1rem 2.8rem; background: linear-gradient(135deg, #a855f7, #7c3aed); color: #fff; border: none; border-radius: 10px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 2px; font-family: 'Orbitron', sans-serif; box-shadow: 0 10px 30px rgba(168, 85, 247, 0.3); }
         .acknowledge-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(168, 85, 247, 0.5); }
-        .acknowledge-btn:active { transform: translateY(-1px); }
-        @media (max-width: 768px) {
-            .header-content { flex-direction: column; gap: 1rem; }
-            nav { gap: 0.8rem; }
-            nav a { font-size: 0.75rem; }
-            .search-filter-section { grid-template-columns: 1fr; gap: 1.5rem; }
-            .filter-buttons { justify-content: center; }
-            .hero h1 { font-size: 1.8rem; }
-            .news-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-            .footer-links { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-            .stats-bar { grid-template-columns: 1fr; }
-        }
-        @media (max-width: 480px) {
-            header { padding: 1rem 0; }
-            .logo { font-size: 1.2rem; letter-spacing: 1px; }
-            nav { display: none; }
-            main { margin: 1rem auto; padding: 0 1rem; }
-            .hero { padding: 1.5rem; }
-            .hero h1 { font-size: 1.5rem; }
-            .search-box input { padding: 0.9rem 1rem 0.9rem 2.8rem; font-size: 0.95rem; }
-            .article-title { font-size: 1rem; }
-            .footer-links { grid-template-columns: 1fr; }
-            .modal-content { padding: 1.8rem; }
-            .hacker-icon { font-size: 3.5rem; }
-        }
+        @media (max-width: 768px) { .header-content { flex-direction: column; } nav { gap: 0.8rem; } .hero h1 { font-size: 1.8rem; } .controls { gap: 1.5rem; } .filter-buttons { gap: 0.6rem; } .severity-btn { padding: 0.6rem 1.2rem; font-size: 0.8rem; } .news-grid { grid-template-columns: 1fr; } .footer-links { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px) { header { padding: 1rem 0; } .logo { font-size: 1.2rem; } nav { display: none; } main { margin: 1rem auto; padding: 0 1rem; } .hero { padding: 1.5rem; } .search-box input { padding: 0.9rem 1rem 0.9rem 2.8rem; } .filter-buttons { justify-content: center; } .footer-links { grid-template-columns: 1fr; } .modal-content { padding: 1.8rem; } }
     </style>
 </head>
 <body>
     <div class="particles" id="particles"></div>
-
     <header>
         <div class="header-content">
-            <a href="#" class="logo">
-                <i class="fas fa-radiation"></i>
-                CYBER INTELLIGENCE
-            </a>
+            <a href="#" class="logo"><i class="fas fa-radiation"></i>CYBER INTELLIGENCE</a>
             <nav>
                 <a onclick="showHackerModal()">THREATS</a>
                 <a onclick="showHackerModal()">BREACHES</a>
@@ -220,14 +101,12 @@
             </nav>
         </div>
     </header>
-
     <main>
         <div class="hero">
             <h1>Real-Time Threat Intelligence</h1>
             <p>Monitor the latest security vulnerabilities and threats across the globe</p>
         </div>
-
-        <div class="search-filter-section">
+        <div class="controls">
             <div class="search-box">
                 <i class="fas fa-search"></i>
                 <input type="text" id="searchInput" placeholder="Search threats, vulnerabilities...">
@@ -240,65 +119,34 @@
                 <button class="severity-btn" data-severity="low">Low</button>
             </div>
         </div>
-
         <div class="stats-bar">
             <div class="stat-card">
                 <div class="stat-icon"><i class="fas fa-shield-alt"></i></div>
-                <div class="stat-content">
-                    <h3>Total Threats</h3>
-                    <p id="totalCount">0</p>
-                </div>
+                <div class="stat-content"><h3>Total Threats</h3><p id="totalCount">0</p></div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon"><i class="fas fa-clock"></i></div>
-                <div class="stat-content">
-                    <h3>Last Updated</h3>
-                    <p id="lastUpdate">--:--</p>
-                </div>
+                <div class="stat-content"><h3>Last Updated</h3><p id="lastUpdate">--:--</p></div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon"><i class="fas fa-database"></i></div>
-                <div class="stat-content">
-                    <h3>Data Sources</h3>
-                    <p id="sourceCount">6</p>
-                </div>
+                <div class="stat-content"><h3>Data Sources</h3><p id="sourceCount">6</p></div>
             </div>
         </div>
-
         <div id="newsContainer" class="news-grid">
-            <div class="loading">
-                <div class="spinner"></div>
-                <p>Scanning threat database...</p>
-            </div>
+            <div class="loading"><div class="spinner"></div><p>Scanning threat database...</p></div>
         </div>
     </main>
-
     <footer>
         <div class="footer-content">
             <div class="footer-links">
-                <div class="footer-column">
-                    <h4>Platform</h4>
-                    <a onclick="showHackerModal()">About</a>
-                    <a onclick="showHackerModal()">Contact</a>
-                </div>
-                <div class="footer-column">
-                    <h4>Legal</h4>
-                    <a onclick="showHackerModal()">Privacy</a>
-                    <a onclick="showHackerModal()">Terms</a>
-                </div>
-                <div class="footer-column">
-                    <h4>Developer</h4>
-                    <a onclick="showHackerModal()">API</a>
-                    <a onclick="showHackerModal()">Docs</a>
-                    <a onclick="showHackerModal()">Status</a>
-                </div>
+                <div class="footer-column"><h4>Platform</h4><a onclick="showHackerModal()">About</a><a onclick="showHackerModal()">Contact</a></div>
+                <div class="footer-column"><h4>Legal</h4><a onclick="showHackerModal()">Privacy</a><a onclick="showHackerModal()">Terms</a></div>
+                <div class="footer-column"><h4>Developer</h4><a onclick="showHackerModal()">API</a><a onclick="showHackerModal()">Docs</a><a onclick="showHackerModal()">Status</a></div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Cyber Intelligence. Real-time threat intelligence for defenders.</p>
-            </div>
+            <div class="footer-bottom"><p>&copy; 2024 Cyber Intelligence. Real-time threat intelligence for defenders.</p></div>
         </div>
     </footer>
-
     <div class="modal" id="hackerModal">
         <div class="modal-content">
             <div class="hacker-icon">🖥️</div>
@@ -306,26 +154,9 @@
             <button class="acknowledge-btn" onclick="closeHackerModal()">ACKNOWLEDGE</button>
         </div>
     </div>
-
     <script>
-        const hackerMessages = [
-            "🖥️ Our elite hackers are writing code... while eating pizza 🍕",
-            "404: This page is in another castle. Our plumbers are on it. 🍄",
-            "This feature is guarded by a grumpy firewall. Try bribing with coffee. ☕",
-            "Our hamsters are still building this. Please wait... 🐹",
-            "Access denied. This area is protected by 256-bit excuses. 🔒",
-            "The hacker you're looking for is on a coffee break. ☕"
-        ];
-
-        const feeds = [
-            'https://thehackernews.com/feeds/posts/default',
-            'https://www.bleepingcomputer.com/feed/',
-            'https://securityaffairs.com/feed/',
-            'https://feeds.krebsonsecurity.com/krebsonsecurity',
-            'https://www.darkreading.com/rss/index.xml',
-            'https://packetstormsecurity.com/files/rss/files.xml'
-        ];
-
+        const hackerMessages = ["🖥️ Our elite hackers are writing code... while eating pizza 🍕","404: This page is in another castle. Our plumbers are on it. 🍄","This feature is guarded by a grumpy firewall. Try bribing with coffee. ☕","Our hamsters are still building this. Please wait... 🐹","Access denied. This area is protected by 256-bit excuses. 🔒","The hacker you're looking for is on a coffee break. ☕"];
+        const feeds = ['https://thehackernews.com/feeds/posts/default','https://www.bleepingcomputer.com/feed/','https://securityaffairs.com/feed/','https://feeds.krebsonsecurity.com/krebsonsecurity','https://www.darkreading.com/rss/index.xml','https://packetstormsecurity.com/files/rss/files.xml'];
         let allArticles = [];
         let currentSeverityFilter = 'all';
         let currentSearchQuery = '';
@@ -343,12 +174,7 @@
                 const p = document.createElement('div');
                 p.className = 'particle';
                 const size = Math.random() * 4 + 1;
-                p.style.width = size + 'px';
-                p.style.height = size + 'px';
-                p.style.left = Math.random() * 100 + '%';
-                p.style.top = Math.random() * 100 + '%';
-                p.style.animationDuration = (Math.random() * 25 + 15) + 's';
-                p.style.animationDelay = Math.random() * 5 + 's';
+                p.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-duration:${Math.random()*25+15}s;animation-delay:${Math.random()*5}s`;
                 container.appendChild(p);
             }
         }
@@ -359,7 +185,7 @@
                 filterAndDisplayArticles();
             });
             document.querySelectorAll('.severity-btn').forEach(btn => {
-                btn.addEventListener('click', function () {
+                btn.addEventListener('click', function() {
                     document.querySelectorAll('.severity-btn').forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
                     currentSeverityFilter = this.dataset.severity;
@@ -370,25 +196,21 @@
 
         async function fetchRSSFeed(feedUrl) {
             try {
-                const proxyUrl = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(feedUrl);
-                const response = await fetch(proxyUrl, {
-                    headers: { 'Cache-Control': 'no-cache' }
-                });
-                if (!response.ok) throw new Error('HTTP ' + response.status);
-
-                const data = await response.json();
-                if (!data.items || !data.items.length) return [];
-
-                return data.items.slice(0, 30).map(item => ({
-                    title: item.title || 'Untitled',
-                    summary: stripHtml(item.description || item.content || ''),
-                    link: item.link || '#',
+                const url = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(feedUrl);
+                const res = await fetch(url, { headers: { 'Cache-Control': 'no-cache' } });
+                if (!res.ok) throw new Error('HTTP');
+                const data = await res.json();
+                if (!data.items) return [];
+                return data.items.slice(0,30).map(i => ({
+                    title: i.title || 'Untitled',
+                    summary: stripHtml(i.description || i.content || ''),
+                    link: i.link || '#',
                     source: data.feed.title || 'Security',
-                    date: new Date(item.pubDate || Date.now()),
-                    severity: determineSeverity(item.title + ' ' + (item.description || ''))
+                    date: new Date(i.pubDate || Date.now()),
+                    severity: determineSeverity(i.title + ' ' + (i.description || ''))
                 }));
-            } catch (err) {
-                console.warn('Feed error:', feedUrl, err);
+            } catch (e) {
+                console.warn('Feed error:', feedUrl);
                 return [];
             }
         }
@@ -398,92 +220,59 @@
                 const results = await Promise.allSettled(feeds.map(f => fetchRSSFeed(f)));
                 const seen = new Set();
                 const articles = [];
-
                 results.forEach(r => {
                     if (r.status === 'fulfilled' && r.value) {
                         r.value.forEach(a => {
-                            const key = a.title.toLowerCase().trim();
-                            if (!seen.has(key)) { 
-                                seen.add(key); 
-                                articles.push(a); 
-                            }
+                            const key = a.title.toLowerCase();
+                            if (!seen.has(key)) { seen.add(key); articles.push(a); }
                         });
                     }
                 });
-
                 const cutoff = new Date();
                 cutoff.setDate(cutoff.getDate() - 30);
-
-                allArticles = articles
-                    .filter(a => a.date >= cutoff)
-                    .sort((a, b) => b.date - a.date);
-
+                allArticles = articles.filter(a => a.date >= cutoff).sort((a,b) => b.date - a.date);
                 updateStats();
                 filterAndDisplayArticles();
-            } catch (err) {
-                console.error('Fetch error:', err);
+            } catch (e) {
+                console.error('Fetch error:', e);
                 displayError();
             }
         }
 
         function stripHtml(html) {
-            const div = document.createElement('div');
-            div.innerHTML = html;
-            return (div.textContent || div.innerText || '').trim().substring(0, 200);
+            const d = document.createElement('div');
+            d.innerHTML = html;
+            return (d.textContent || '').trim().substring(0,200);
         }
 
         function determineSeverity(text) {
             const t = text.toLowerCase();
-            if (/critical|zero.day|ransomware|worm|botnet|rce|remote code|actively exploit|0day/.test(t)) return 'critical';
-            if (/high|severe|major|urgent|patch|exploit|attack|threat|vulnerability|malware|breach|security alert/.test(t)) return 'high';
-            if (/medium|moderate|issue|bug|security|update|warning/.test(t)) return 'medium';
+            if (/critical|zero.day|ransomware|worm|botnet|rce|exploit/.test(t)) return 'critical';
+            if (/high|severe|urgent|patch|attack|threat|vulnerability|malware|breach/.test(t)) return 'high';
+            if (/medium|moderate|bug|security|update|warning/.test(t)) return 'medium';
             return 'low';
         }
 
         function filterAndDisplayArticles() {
             let list = allArticles;
             if (currentSeverityFilter !== 'all') list = list.filter(a => a.severity === currentSeverityFilter);
-            if (currentSearchQuery) list = list.filter(a =>
-                a.title.toLowerCase().includes(currentSearchQuery) ||
-                a.summary.toLowerCase().includes(currentSearchQuery)
-            );
+            if (currentSearchQuery) list = list.filter(a => a.title.toLowerCase().includes(currentSearchQuery) || a.summary.toLowerCase().includes(currentSearchQuery));
             displayArticles(list);
         }
 
         function displayArticles(articles) {
             const container = document.getElementById('newsContainer');
             if (!articles.length) {
-                container.innerHTML = `
-                    <div class="no-articles">
-                        <i class="fas fa-filter"></i>
-                        <h3>No Threats Found</h3>
-                        <p>Try adjusting your filters or search terms.</p>
-                    </div>`;
+                container.innerHTML = `<div class="no-articles"><i class="fas fa-filter"></i><h3>No Threats Found</h3><p>Try adjusting your filters.</p></div>`;
                 return;
             }
-            container.innerHTML = articles.map(a => `
-                <div class="article-card" onclick="openArticle('${escapeUrl(a.link)}')">
-                    <div class="article-header">
-                        <h3 class="article-title">${escapeHtml(a.title)}</h3>
-                        <span class="severity-badge severity-${a.severity}">${a.severity.toUpperCase()}</span>
-                    </div>
-                    <p class="article-summary">${escapeHtml(a.summary.substring(0, 150))}...</p>
-                    <div class="article-meta">
-                        <div class="article-source">
-                            <i class="fas fa-database"></i>
-                            ${escapeHtml(a.source.substring(0, 25))}
-                        </div>
-                        <span class="article-date">${formatDate(a.date)}</span>
-                    </div>
-                </div>`).join('');
+            container.innerHTML = articles.map(a => `<div class="article-card" onclick="openArticle('${escapeUrl(a.link)}')"><div class="article-header"><h3 class="article-title">${escapeHtml(a.title)}</h3><span class="severity-badge severity-${a.severity}">${a.severity.toUpperCase()}</span></div><p class="article-summary">${escapeHtml(a.summary.substring(0,150))}...</p><div class="article-meta"><div class="article-source"><i class="fas fa-database"></i>${escapeHtml(a.source.substring(0,25))}</div><span class="article-date">${formatDate(a.date)}</span></div></div>`).join('');
         }
 
         function updateStats() {
             document.getElementById('totalCount').textContent = allArticles.length;
             const now = new Date();
-            document.getElementById('lastUpdate').textContent =
-                now.getHours().toString().padStart(2, '0') + ':' +
-                now.getMinutes().toString().padStart(2, '0');
+            document.getElementById('lastUpdate').textContent = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
         }
 
         function formatDate(date) {
@@ -491,10 +280,10 @@
             const m = Math.floor(ms / 60000);
             const h = Math.floor(m / 60);
             const d = Math.floor(h / 24);
-            if (m < 1)  return 'Just now';
+            if (m < 1) return 'Just now';
             if (m < 60) return m + 'm ago';
             if (h < 24) return h + 'h ago';
-            if (d < 7)  return d + 'd ago';
+            if (d < 7) return d + 'd ago';
             if (d < 30) return Math.floor(d / 7) + 'w ago';
             return new Date(date).toLocaleDateString();
         }
@@ -514,8 +303,7 @@
         }
 
         function showHackerModal() {
-            document.getElementById('hackerMessage').textContent =
-                hackerMessages[Math.floor(Math.random() * hackerMessages.length)];
+            document.getElementById('hackerMessage').textContent = hackerMessages[Math.floor(Math.random() * hackerMessages.length)];
             document.getElementById('hackerModal').classList.add('active');
         }
 
@@ -524,12 +312,7 @@
         }
 
         function displayError() {
-            document.getElementById('newsContainer').innerHTML = `
-                <div class="no-articles">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <h3>Connection Error</h3>
-                    <p>Unable to fetch security intelligence.</p>
-                </div>`;
+            document.getElementById('newsContainer').innerHTML = `<div class="no-articles"><i class="fas fa-exclamation-triangle"></i><h3>Connection Error</h3><p>Unable to fetch data.</p></div>`;
         }
 
         document.getElementById('hackerModal').addEventListener('click', e => {
